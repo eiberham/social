@@ -1,0 +1,25 @@
+{
+  "name": "appointy",
+  "version": "1.0.0",
+  "description": "An appointment scheduling app",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "build": "tsc"
+  },
+  "keywords": [
+    "appointment",
+    "schedule",
+    "calendar"
+  ],
+  "author": "Abraham",
+  "license": "MIT",
+  "dependencies": {
+    "@types/node": "^12.12.0",
+    "fastify": "^2.10.0"
+  },
+  "devDependencies": {
+    "typescript": "^3.6.4",
+    "webpack": "^4.41.2"
+  }
+}
