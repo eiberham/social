@@ -1,16 +1,20 @@
-const fastify = require('fastify')({ logger: true })
+import fastify from "fastify";
+import {Server, IncomingMessage, ServerResponse} from 'http';
 
-fastify.get('/', async (request, reply) => {
-  return { hello: 'world' }
-})
+const server: fastify.FastifyInstance<
+  Server,
+  IncomingMessage,
+  ServerResponse
+> = fastify();
 
 const start = async () => {
   try {
-    await fastify.listen(3000)
-    fastify.log.info(`server listening on ${fastify.server.address().port}`)
+    await server.listen(3000)
+    console.log(`server listening on 3000`)
   } catch (err) {
-    fastify.log.error(err)
+    console.error(err)
     process.exit(1)
   }
 }
+
 start()

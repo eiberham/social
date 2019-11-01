@@ -4,7 +4,7 @@
   "description": "An appointment scheduling app",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon server.js",
+    "dev": "npm run build && nodemon build/server.js",
     "build": "tsc"
   },
   "keywords": [
