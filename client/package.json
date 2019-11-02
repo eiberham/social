@@ -4,7 +4,8 @@
   "description": "An appointment scheduling app",
   "main": "index.js",
   "scripts": {
-    "dev:build": "webpack"
+    "build": "webpack -p",
+    "start": "webpack-dev-server -d --content-base ./dist"
   },
   "author": "Abraham",
   "license": "MIT",
@@ -16,7 +17,8 @@
     "ts-loader": "^6.2.1",
     "typescript": "^3.6.4",
     "webpack": "^4.41.2",
-    "webpack-cli": "^3.3.10"
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.9.0"
   },
   "dependencies": {
     "react": "^16.11.0",

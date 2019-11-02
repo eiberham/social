@@ -1,9 +1,9 @@
-import React from 'react';
+import * as React from 'react';
 
-const App = () => {
-    return (
-        <div>App</div>
-    )
+export default class App extends React.Component<{}> {
+    render(){
+        return (
+            <div>App</div>
+        )
+    }
 };
-
-export default App;
