@@ -1,0 +1,15 @@
+version: "3.0"
+services:
+  express:
+    container_name: appointy
+    build: .
+    ports:
+      - "3000:3000"
+    links:
+      - postgres
+  postgres:
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: postgres

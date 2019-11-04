@@ -1,20 +1,17 @@
-import fastify from "fastify";
-import {Server, IncomingMessage, ServerResponse} from 'http';
+import express from "express";
 
-const server: fastify.FastifyInstance<
-  Server,
-  IncomingMessage,
-  ServerResponse
-> = fastify();
+import { Sequelize } from "sequelize";
 
-const start = async () => {
-  try {
-    await server.listen(3000)
-    console.log(`server listening on 3000`)
-  } catch (err) {
-    console.error(err)
-    process.exit(1)
-  }
-}
+const app = express();
+const port = 3000;
 
-start()
+const sequelize = new Sequelize('postgres://postgres@localhost:5432/appointy');
+
+app.get( "/", ( req, res ) => {
+    res.send( "Welcome to the appointy's web service x)" );
+} );
+
+app.listen( port, () => {
+    // tslint:disable-next-line:no-console
+    console.log( `server started at http://localhost:${ port }` );
+} );
