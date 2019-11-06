@@ -3,18 +3,18 @@ import bodyParser from "body-parser";
 import compression from "compression";
 import cookieParser from "cookie-parser";
 import helmet from "helmet";
-
-import { Sequelize } from "sequelize";
-import dotenv from "dotenv";
-
+import User from "./models/user";
 import register from "./routes/register";
 
+import dotenv from "dotenv";
 dotenv.config();
+// tslint:disable-next-line:no-console
+User.sync({force: false}).then(()=> console.log("done"));
 
 const app = express();
 const port: string = process.env.PORT!;
 
-const sequelize: Sequelize = new Sequelize(process.env.DB_CONNECTION_STRING!);
+// const sequelize: Sequelize = new Sequelize(process.env.DB_CONNECTION_STRING!);
 
 app.use(compression());
 app.use(bodyParser.json());
