@@ -35,11 +35,20 @@ User.init({
     },
     password: {
       type: new DataTypes.STRING(128),
-      allowNull: false
+      allowNull: false,
     }
   }, {
     tableName: 'users',
     sequelize: db,
   });
+
+  function encryptPasswordIfChanged(user, options) {
+    if (user.changed('password')) {
+      encryptPassword(user.get('password'));
+    }
+  }
+  
+  User.beforeCreate(encryptPasswordIfChanged);
+  User.beforeUpdate(encryptPasswordIfChanged);
 
 export default User;
