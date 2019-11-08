@@ -3,13 +3,14 @@ import User from "../models/user";
 
 const router: Router = Router();
 
-router.get('/', async (req: Request, res: Response) => {
+router.post('/', async (req: Request, res: Response) => {
     const { name, email, country, username, password } = req.body;
 
-    // TODO: cypher pass before creating a new record
-
     try {
-        await User.findOrCreate({where: { username, email }, defaults: {}})
+        await User.findOrCreate({
+            where: { username, email },
+            defaults: { name, email, country, username, password }
+        })
         .then(([user, created]) => {
             if (user instanceof User){
                 res.status(200).send('The user already exists');
@@ -17,7 +18,10 @@ router.get('/', async (req: Request, res: Response) => {
             }
 
             if(created){
-                res.send(201);
+                res.status(201).json({
+                    code: 201,
+                    message: 'Resource created'
+                });
             }
 
         })

@@ -1,5 +1,6 @@
 import { Model, DataTypes } from "sequelize";
 import { db } from "../db";
+import bcrypt from "bcrypt";
 
 class User extends Model {
     public id!          : number;
@@ -8,7 +9,6 @@ class User extends Model {
     public country!     : string;
     public username!    : string;
     public password!    : string;
-
 }
 
 User.init({
@@ -42,13 +42,18 @@ User.init({
     sequelize: db,
   });
 
-  function encryptPasswordIfChanged(user, options) {
-    if (user.changed('password')) {
-      encryptPassword(user.get('password'));
+  User.beforeCreate((user, options) => {
+    return bcrypt.hash(user.password, 10).then((hash) => {
+      user.password = hash;
+    });
+  });
+
+  User.beforeUpdate((user, options) => {
+    if(user.changed('password')){
+      return bcrypt.hash(user.password, 10).then((hash) => {
+        user.password = hash;
+      });
     }
-  }
-  
-  User.beforeCreate(encryptPasswordIfChanged);
-  User.beforeUpdate(encryptPasswordIfChanged);
+  });
 
 export default User;

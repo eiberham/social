@@ -14,9 +14,8 @@ User.sync({force: false}).then(()=> console.log("done"));
 const app = express();
 const port: string = process.env.PORT!;
 
-// const sequelize: Sequelize = new Sequelize(process.env.DB_CONNECTION_STRING!);
-
 app.use(compression());
+app.use(bodyParser());
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(helmet());
