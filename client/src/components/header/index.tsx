@@ -4,7 +4,19 @@ import './styles.scss';
 export const Header: React.FC<{}> = () => {
     return (
         <header className="header">
-            Header
+            <div className="logo">
+                <a href="/">
+                    <span>Appointy</span>
+                </a>
+            </div>
+            <div className="accounts">
+                <ul>
+                    <li>
+                        <a href="#">Sign in</a>
+                        <a href="#">Sign up</a>
+                    </li>
+                </ul>
+            </div>
         </header>
     )
 };
