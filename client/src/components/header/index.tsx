@@ -6,7 +6,7 @@ export const Header: React.FC<{}> = () => {
         <header className="header">
             <div className="logo">
                 <a href="/">
-                    <span>Appointy</span>
+                    <span>Social</span>
                 </a>
             </div>
             <div className="accounts">
