@@ -1,5 +1,6 @@
 footer {
     grid-area: foot;
+    grid-column: 1 / -1;
     background: #353e48;
     min-height: 40vh;
     display: flex;

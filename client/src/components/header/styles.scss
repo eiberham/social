@@ -1,5 +1,6 @@
 .header {
     grid-area: head;
+    grid-column: 1 / -1;
     min-height: 15vh;
     background: url(https://cdn.hipwallpaper.com/i/69/39/YpmOBh.jpg) no-repeat center, linear-gradient(to right bottom, rgba(black, 0.8), rgba(pink, 0.8));
     opacity: .9;

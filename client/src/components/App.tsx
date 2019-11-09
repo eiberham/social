@@ -1,16 +1,14 @@
 import * as React from 'react';
 import "./App.scss";
 
-import { Header } from './header';
-import { Footer } from './footer';
+import { Layout } from './layout';
 
 export default class App extends React.Component<{}> {
     render(){
         return (
-            <div>
-                <Header />
-                <Footer />
-            </div>
+            <React.Fragment>
+                <Layout />
+            </React.Fragment>
         )
     }
 };
