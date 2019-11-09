@@ -1,7 +1,8 @@
 .header {
     grid-area: head;
-    min-height: 30vh;
-    background-color: lightcoral;
+    min-height: 15vh;
+    background: url(https://cdn.hipwallpaper.com/i/69/39/YpmOBh.jpg) no-repeat center, linear-gradient(to right bottom, rgba(black, 0.8), rgba(pink, 0.8));
+    opacity: .9;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -16,6 +17,15 @@
         text-decoration: none;
     }
 
+    .logo {
+        span {
+            font-size: 1rem;
+            font-weight: 800;
+            letter-spacing: 1mm;
+            color: purple;
+        }
+    }
+
     .accounts {
 
         ul {
@@ -25,8 +35,13 @@
                 list-style: none;
                 a {
                     padding: 0.5rem;
-                    color: #fff;
+                    color: #000;
                     font-weight: bold;
+                    
+                    &:hover {
+                        color: #fff;
+                        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+                    }
                 }
             }
         }

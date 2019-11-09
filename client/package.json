@@ -1,7 +1,7 @@
 {
-  "name": "appointy",
+  "name": "social",
   "version": "1.0.0",
-  "description": "An appointment scheduling app",
+  "description": "A social event scheduling and promoting app",
   "main": "index.js",
   "scripts": {
     "build": "webpack -p",
