@@ -5,27 +5,29 @@ import jwt from "jsonwebtoken";
 
 const router: Router = Router();
 
-router.post('/', async (req: Request, res: Response): Promise<any> => {
-    const { user, password } = req.body;
+router.post('/', async (req: Request, res: Response) => {
+    const { username, password } = req.body;
 
-    await User.findOne({ 
+    await User.findOne({
         where: {
-            user
+            username
         }
-    }).then( user => {
-        if(user){
-            bcrypt.compare(password, user.password, (err, matches) => {
+    }).then( record => {
+        
+        if(record){
+            bcrypt.compare(password, record.password, (fail, matches) => {
+                if(fail) throw fail;
                 if(matches){
-                    const payload: Object = {
-                        user
+                    const payload: any = {
+                        user: record
                     };
 
                     jwt.sign(
                         payload,
                         process.env.JWT_SECRET!,
                         { expiresIn: "1h" },
-                        (err, token) => {
-                            if (err) throw err;
+                        (error, token) => {
+                            if (error) throw error;
                             res.status(200).json({
                                 message: "Authenticated",
                                 token
@@ -36,7 +38,9 @@ router.post('/', async (req: Request, res: Response): Promise<any> => {
             });
         }
 
-    }).catch( error => {
-        
+    }).catch( () => {
+        res.status(500);
     });
 });
+
+export default router;

@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser";
 import helmet from "helmet";
 import User from "./models/user";
 import register from "./routes/register";
+import login from "./routes/login";
 
 import dotenv from "dotenv";
 dotenv.config();
@@ -25,6 +26,7 @@ app.get( "/", ( req: Request, res: Response ) => {
 } );
 
 app.use("/api/register", register);
+app.use("/api/login", login);
 
 app.listen( port, () => {
     // tslint:disable-next-line:no-console

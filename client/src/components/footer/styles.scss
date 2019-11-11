@@ -4,10 +4,36 @@ footer {
     background: #353e48;
     min-height: 40vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     font-family: 'Lato', sans-serif;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: bolder;
     color: #fff;
+
+    .sn {
+        margin: 1rem 0;
+        align-self: center;
+
+        ul {
+            list-style: none;
+            margin: 1rem 0;
+            padding: 0;
+
+            li {
+                display: inline-block;
+                padding: 0 0.6rem;
+
+                &:first {
+                    padding: 0;
+                }
+
+                & > a {
+                    color: #fff;
+                    font-size: 1.5rem;
+                }
+            }
+        }
+    }
 }
