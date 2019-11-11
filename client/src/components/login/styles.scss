@@ -2,4 +2,18 @@
     grid-area: main;
     grid-column: 1 / -1;
     min-height: 45vh;
+    background-color: #fafafa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__form {
+        min-width: 40%;
+        max-width: 60%;
+
+        & > div {
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+    }
 }
