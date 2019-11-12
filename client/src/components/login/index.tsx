@@ -1,14 +1,22 @@
 import * as React from 'react';
 import "./styles.scss";
+import { connect } from 'react-redux';
 
 import useForm from 'react-hook-form';
 import { Form, Button } from 'semantic-ui-react';
 
-const Login: React.FC<{}> = () => {
-    const { register, handleSubmit, errors } = useForm();
+import { userLoginRequest } from '../../actions/auth';
 
-    const onSubmit = values => {
-        console.log("values: ", values);
+export interface LoginProps {
+    userLoginRequest: (username: string, password: string) => any;
+}
+
+const Component: React.FC<LoginProps> = props => {
+    const { register, handleSubmit, errors } = useForm();
+    const { userLoginRequest } = props;
+
+    const onSubmit = ({ username, password }) => {
+        userLoginRequest(username, password);
     };
 
     return (
@@ -47,5 +55,13 @@ const Login: React.FC<{}> = () => {
         </div>
     )
 };
+
+const mapDispatchToProps = () => {
+    return {
+        userLoginRequest
+    }
+}
+
+const Login = connect(null, mapDispatchToProps)(Component)
 
 export { Login };
