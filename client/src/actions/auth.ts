@@ -1,7 +1,5 @@
 interface IAction {
     type: string
-    a?: string
-    b?: string
     payload?: any
 }
 
