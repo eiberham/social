@@ -15,7 +15,12 @@ const Component: React.FC<LoginProps> = props => {
     const { register, handleSubmit, errors } = useForm();
     const { userLoginRequest } = props;
 
+    console.log("props de login: ", props);
+
     const onSubmit = ({ username, password }) => {
+        console.log("submit was triggered");
+        console.log("username: ", username);
+        console.log("password: ", password);
         userLoginRequest(username, password);
     };
 

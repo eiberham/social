@@ -1,4 +1,4 @@
-interface IAction {
+export interface IAction {
     type: string
     payload?: any
 }
@@ -8,8 +8,8 @@ export const Types = {
     USER_LOGIN_SUCCESS: 'user/login_success'
 };
 
-export const userLoginRequest = ():IAction => ({
-    type: Types.USER_LOGIN_REQUEST
+export const userLoginRequest = (data) => ({
+    type: Types.USER_LOGIN_REQUEST, data
 });
 
 export const userLoginSuccess = ({ token }):IAction => ({

@@ -13,7 +13,7 @@ router.post('/', async (req: Request, res: Response) => {
             username
         }
     }).then( record => {
-        
+
         if(record){
             bcrypt.compare(password, record.password, (fail, matches) => {
                 if(fail) throw fail;
