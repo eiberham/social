@@ -1,9 +1,11 @@
 import * as React from 'react';
 import "./styles.scss";
 import { connect } from 'react-redux';
+import { bindActionCreators, Dispatch } from 'redux';
 
 import useForm from 'react-hook-form';
 import { Form, Button } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 
 import { userLoginRequest } from '../../actions/auth';
 
@@ -21,7 +23,7 @@ const Component: React.FC<LoginProps> = props => {
         console.log("submit was triggered");
         console.log("username: ", username);
         console.log("password: ", password);
-        userLoginRequest(username, password);
+        props.userLoginRequest(username, password);
     };
 
     return (
@@ -29,7 +31,7 @@ const Component: React.FC<LoginProps> = props => {
             <div className="login__form">
                 <h2>Login</h2>
                 <div>
-                    Don't have an account yet ? <a href="/signup">Sign up</a>
+                    Don't have an account yet ? <Link to="/signup">Sign up</Link>
                 </div>
                 <Form onSubmit={handleSubmit(onSubmit)}>
                     
@@ -48,6 +50,7 @@ const Component: React.FC<LoginProps> = props => {
                             name="password" 
                             type="password" 
                             placeholder="Password" 
+                            autoComplete="current-password"
                             ref={register({ required: true })} />
                             {errors.password && 'Password is required.'}
                     </Form.Field>
@@ -61,10 +64,10 @@ const Component: React.FC<LoginProps> = props => {
     )
 };
 
-const mapDispatchToProps = () => {
-    return {
+const mapDispatchToProps = (dispatch: Dispatch) => {
+    return bindActionCreators({
         userLoginRequest
-    }
+    }, dispatch)
 }
 
 const Login = connect(null, mapDispatchToProps)(Component)

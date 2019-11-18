@@ -3,17 +3,25 @@ import * as ReactDOM from 'react-dom';
 import App from './components/App';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
+import { composeWithDevTools, devToolsEnhancer } from 'redux-devtools-extension';
 import createSagaMiddleware from 'redux-saga';
 import reducers from './reducers';
 import rootSaga from './sagas';
 
 const sagaMiddleware = createSagaMiddleware();
-const composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const enhancer = composeEnhancers(
-    applyMiddleware(sagaMiddleware)
-);
 
-const store = createStore(reducers, enhancer);
+const store = createStore(reducers, composeWithDevTools(
+    applyMiddleware(sagaMiddleware),
+    /* devToolsEnhancer({
+        shouldHotReload: true,
+        shouldCatchErrors: true,
+        features: {
+            persist: true
+        },
+        trace: true
+    }) */
+));
+
 sagaMiddleware.run(rootSaga);
 
 ReactDOM.render(

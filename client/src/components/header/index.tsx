@@ -1,6 +1,8 @@
 import * as React from 'react';
 import './styles.scss';
 
+import { Link } from 'react-router-dom';
+
 export const Header: React.FC<{}> = () => {
     return (
         <header className="header">
@@ -12,8 +14,8 @@ export const Header: React.FC<{}> = () => {
             <div className="accounts">
                 <ul>
                     <li>
-                        <a href="#">Sign in</a>
-                        <a href="#">Sign up</a>
+                        <Link to="/login">Sign in</Link>
+                        <Link to="/signup">Sign up</Link>
                     </li>
                 </ul>
             </div>

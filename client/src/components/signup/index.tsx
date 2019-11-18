@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import useForm from 'react-hook-form';
 import { Form, Button } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 
 
 export interface SignUpProps {
@@ -18,7 +19,7 @@ interface SignUp {
     password:   string
 }
 
-const SignUp: React.FC<SignUpProps> = props => {
+export const SignUp: React.FC<SignUpProps> = props => {
     const { register, handleSubmit, errors } = useForm();
 
     const onSubmit = (values: SignUp) => {
@@ -30,7 +31,7 @@ const SignUp: React.FC<SignUpProps> = props => {
             <div className="signup__form">
                 <h2>Sign Up</h2>
                 <div>
-                    Already have an account ? <a href="/login">Log In</a>
+                    Already have an account ? <Link to="/login">Log In</Link>
                 </div>
                 <Form onSubmit={handleSubmit(onSubmit)}>
 
@@ -79,5 +80,3 @@ const SignUp: React.FC<SignUpProps> = props => {
         </div>
     );
 }
-
-export default SignUp;

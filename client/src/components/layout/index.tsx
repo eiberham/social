@@ -7,19 +7,21 @@ import { Header } from '../header';
 import { Footer } from '../footer';
 
 import { Login } from '../login';
+import { SignUp } from '../signup';
 
 export const Layout: React.FC<{}> = () => {
     const history = createBrowserHistory();
     return (
         <div className="content">
-            <Header />
             <BrowserRouter>
+                <Header />
                 <Switch>
                     <Route exact path="/" component={Login}></Route>
                     <Route path="/login" component={Login}></Route>
+                    <Route path="/signup" component={SignUp}></Route>
                 </Switch>
+                <Footer />
             </BrowserRouter>
-            <Footer />
         </div>
     )
 };

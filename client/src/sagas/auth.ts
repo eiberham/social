@@ -1,21 +1,17 @@
-import { takeEvery, call, fork, put } from 'redux-saga/effects';
+import { takeLatest, call, fork, put } from 'redux-saga/effects';
 import * as actions from '../actions/auth';
 import api from '../api';
 
-function* auth({ type, payload }){
-    console.log("llamando al auth papa");
-    try {
-        const response = yield call(api.post, '/login', payload);
-        console.log("response: ", response);
-		//yield put();
-    }catch(e){
-        console.log("error: ", e);
-    }
+function* userLogin(action: actions.IAction){
+    const response = yield call(api.post, '/login', action.payload);
+    console.log("response: ", response);
+    yield put(actions.userLoginSuccess({
+        token: response.data.data
+    }));
 }
 
-function* watchUserLoginRequest() {
-    console.log("watching login requests");
-    yield takeEvery(actions.Types.USER_LOGIN_REQUEST, auth);
+export function* watchUserLoginRequest() {
+    yield takeLatest(actions.Types.USER_LOGIN_REQUEST, userLogin);
 }
 
 const authSagas = [
