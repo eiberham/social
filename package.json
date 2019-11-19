@@ -1,12 +1,13 @@
 {
-  "name": "appointy",
+  "name": "social",
   "version": "1.0.0",
-  "description": "An appointment scheduling app",
+  "description": "A social event scheduling and promoting app",
   "main": "index.js",
   "scripts": {
     "dev": "npm run build && nodemon build/server.js",
     "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
-    "build": "tsc"
+    "build": "tsc",
+    "copy-files": "copyfiles -f ./src/certs/*.pem  ./build/src/certs/"
   },
   "keywords": [
     "appointment",
@@ -41,6 +42,7 @@
     "@types/helmet": "0.0.45",
     "@types/jsonwebtoken": "^8.3.5",
     "@types/validator": "^10.11.3",
+    "copyfiles": "^2.1.1",
     "tslint": "^6.0.0-beta0",
     "typescript": "^3.6.4",
     "webpack": "^4.41.2"
