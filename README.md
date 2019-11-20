@@ -14,3 +14,10 @@ This app was also an excuse to practice the usage of typescript and redux/saga w
     <td><img alt="GitHub stars" src="https://img.shields.io/github/stars/wwleak/social?style=for-the-badge"></td>
   </tr>
 </table>
+
+## Side note
+To generate your own self signed ssl certificate for development purposes, run the following command on the terminal, but before make sure to run it inside the directory where your server.ts file is present:
+
+```console
+foo@bar:~$ openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365
+```
