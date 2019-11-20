@@ -5,3 +5,19 @@ This app is intended to let us set and manage events ( it was designed mostly th
 
 This app was also an excuse to practice the usage of typescript and redux/saga with react and to leave a reference online for future projects i might be working on, so hope you like it and get inspired.
 
+<table border="0" cellspacing="0" cellpadding="0" style="border-collapse: collapse; border: none;">
+  <tr>
+    <td><img alt="GitHub" src="https://img.shields.io/github/license/wwleak/social?style=for-the-badge"></td>
+    <td><img alt="GitHub code size in bytes" src="https://img.shields.io/github/languages/code-size/wwleak/social?style=for-the-badge"></td>
+    <td><img alt="GitHub top language" src="https://img.shields.io/github/languages/top/wwleak/social?style=for-the-badge"></td>
+    <td><img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/wwleak/social?style=for-the-badge"></td>
+    <td><img alt="GitHub stars" src="https://img.shields.io/github/stars/wwleak/social?style=for-the-badge"></td>
+  </tr>
+</table>
+
+## Side note
+To generate your own self signed ssl certificate for development purposes, run the following command on the terminal, but before make sure to run it inside the directory where your server.ts file is present:
+
+```console
+foo@bar:~$ openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365
+```
