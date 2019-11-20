@@ -54,9 +54,13 @@ app.get( "/", ( req: Request, res: Response ) => {
 app.use("/api/register", register);
 app.use("/api/login", login);
 
+/**
+ * The readFileSync function evaluates relative paths 
+ * to the current working directory of the node executable
+ */
 https.createServer({
-    key: fs.readFileSync("./certs/key.pem"),
-    cert: fs.readFileSync("./certs/cert.pem"),
+    key: fs.readFileSync("./src/certs/key.pem"),
+    cert: fs.readFileSync("./src/certs/cert.pem"),
     passphrase: process.env.TLS_PASSPHRASE
 }, app).listen( port, () => {
     // tslint:disable-next-line:no-console
