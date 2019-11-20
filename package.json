@@ -4,15 +4,17 @@
   "description": "A social event scheduling and promoting app",
   "main": "index.js",
   "scripts": {
-    "dev": "npm run build && nodemon build/server.js",
+    "dev": "npm run build && npm run copy-files && nodemon build/src/server.js",
     "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
     "build": "tsc",
-    "copy-files": "copyfiles -f ./src/certs/*.pem  ./build/src/certs/"
+    "copy-files": "copyfiles -f -V ./src/certs/*.pem  ./build/src/certs/"
   },
   "keywords": [
-    "appointment",
-    "schedule",
-    "calendar"
+    "social",
+    "party",
+    "salsa",
+    "bachata",
+    "rumba"
   ],
   "author": "Abraham",
   "license": "MIT",
