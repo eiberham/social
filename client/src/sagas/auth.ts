@@ -3,10 +3,9 @@ import * as actions from '../actions/auth';
 import api from '../api';
 
 function* userLogin(action: actions.IAction){
-    const response = yield call(api.post, '/login', action.payload);
-    console.log("response: ", response);
+    const {data:{token}} = yield call(api.post, '/login', action.payload);
     yield put(actions.userLoginSuccess({
-        token: response.data.data
+        token
     }));
 }
 

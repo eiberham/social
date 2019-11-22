@@ -13,7 +13,7 @@ import login from "./routes/login";
 import dotenv from "dotenv";
 dotenv.config();
 // tslint:disable-next-line:no-console
-User.sync({force: false}).then(()=> console.log("done"));
+User.sync({force: false}).then(() => console.log("done"));
 
 const app = express();
 const port: string = process.env.PORT!;
@@ -55,7 +55,7 @@ app.use("/api/register", register);
 app.use("/api/login", login);
 
 /**
- * The readFileSync function evaluates relative paths 
+ * The readFileSync function evaluates relative paths
  * to the current working directory of the node executable
  */
 https.createServer({
