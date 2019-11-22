@@ -29,5 +29,9 @@ export const userLoginSuccess = ({ token }): IAction => ({
 });
 
 export const userLogout = (): IAction => ({
-    type: Types.USER_LOGOUT
+    type: Types.USER_LOGOUT,
+    payload: {
+        token: null,
+        authenticated: false
+    }
 });
