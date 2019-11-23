@@ -17,10 +17,11 @@ const auth = (state = INITIAL_STATE, action: IAction) => {
                 auth: action.payload.token,
                 authenticated: true
             }
-        case Types.USER_LOGOUT:
+        case Types.USER_LOGOUT_SUCCESS:
             return {
                 ...state,
-                auth: action.payload
+                auth: action.payload.token,
+                authenticated: false
             }
         default:
             return state;

@@ -6,9 +6,10 @@ export interface IAction {
 }
 
 export enum Types {
-    USER_LOGIN_REQUEST = 'user/login_request',
-    USER_LOGIN_SUCCESS = 'user/login_success',
-    USER_LOGOUT = 'user/logout'
+    USER_LOGIN_REQUEST  = 'user/login_request',
+    USER_LOGIN_SUCCESS  = 'user/login_success',
+    USER_LOGOUT_REQUEST = 'user/logout_request',
+    USER_LOGOUT_SUCCESS = 'user/logout_success'
 };
 
 export const userLoginRequest = (username, password): IAction => {
@@ -28,10 +29,13 @@ export const userLoginSuccess = ({ token }): IAction => ({
     }
 });
 
-export const userLogout = (): IAction => ({
-    type: Types.USER_LOGOUT,
-    payload: {
-        token: null,
-        authenticated: false
-    }
+export const userLogoutRequest = (): IAction => ({
+    type: Types.USER_LOGOUT_REQUEST
 });
+
+export const userLogoutSuccess = (): IAction => ({
+    type: Types.USER_LOGOUT_SUCCESS,
+    payload: {
+        token: null
+    }
+})

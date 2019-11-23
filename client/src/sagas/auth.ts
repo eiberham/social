@@ -13,22 +13,21 @@ function* userLogin(action: actions.IAction){
     }
 }
 
-function* userLogout(action: actions.IAction) {
-    console.log("llamo al logout");
-    yield put (actions.userLogout());
+function* userLogout() {
+    yield put (actions.userLogoutSuccess());
 }
 
 export function* watchUserLoginRequest() {
-    yield takeLatest(actions.Types.USER_LOGIN_REQUEST, userLogin);
+    yield takeEvery(actions.Types.USER_LOGIN_REQUEST, userLogin);
 }
 
-export function* watchUserLogout() {
-    yield takeEvery(actions.Types.USER_LOGOUT, userLogout);
+export function* watchUserLogoutRequest() {
+    yield takeEvery(actions.Types.USER_LOGOUT_REQUEST, userLogout);
 }
 
 const authSagas = [
     fork(watchUserLoginRequest),
-    fork(watchUserLogout)
+    fork(watchUserLogoutRequest)
 ];
 
 export default authSagas;

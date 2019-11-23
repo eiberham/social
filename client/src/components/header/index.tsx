@@ -5,18 +5,18 @@ import { bindActionCreators, Dispatch } from 'redux';
 
 import { Link } from 'react-router-dom';
 
-import { userLogout } from '../../actions/auth';
+import { userLogoutRequest } from '../../actions/auth';
 
 export interface HeaderProps {
     authenticated?: boolean,
-    userLogout?: () => void
+    userLogoutRequest?: () => void
 };
 
 export const Component: React.FC<HeaderProps> = props => {
-    const { authenticated, userLogout } = props;
+    const { authenticated } = props;
 
     const logOut = () => {
-        userLogout();
+        props.userLogoutRequest();
     }
 
     return (
@@ -52,7 +52,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
     return bindActionCreators({
-        userLogout
+        userLogoutRequest
     }, dispatch)
 }
 
