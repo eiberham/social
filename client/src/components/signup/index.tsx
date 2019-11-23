@@ -4,14 +4,13 @@ import { connect } from 'react-redux';
 
 import useForm from 'react-hook-form';
 import { Form, Button } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
-
+import { Link, Redirect } from 'react-router-dom';
 
 export interface SignUpProps {
-    
+    authenticated: boolean
 }
 
-interface SignUp {
+interface ISignUp {
     name:       string,
     email:      string,
     country:    string,
@@ -19,12 +18,17 @@ interface SignUp {
     password:   string
 }
 
-export const SignUp: React.FC<SignUpProps> = props => {
+const Component: React.FC<SignUpProps> = props => {
     const { register, handleSubmit, errors } = useForm();
 
-    const onSubmit = (values: SignUp) => {
+    const onSubmit = (values: ISignUp) => {
         
     };
+
+    const { authenticated } = props;
+
+    console.log("authenticated: ", authenticated);
+    if( authenticated ) return <Redirect to="/login" />
 
     return (
         <div className="signup">
@@ -80,3 +84,13 @@ export const SignUp: React.FC<SignUpProps> = props => {
         </div>
     );
 }
+
+const mapStateToProps = ({ auth }) => {
+    return {
+        authenticated: auth.authenticated
+    }
+}
+
+const SignUp = connect(mapStateToProps, null)(Component);
+
+export { SignUp };
