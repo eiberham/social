@@ -1,4 +1,5 @@
-import { Types, IAction } from '../actions/auth';
+import { IAction } from '../actions/auth';
+import { Types } from '../constants';
 
 const INITIAL_STATE = {
     auth: {

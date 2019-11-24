@@ -1,16 +1,11 @@
 //import { action } from 'typesafe-actions';
 
+import { Types } from '../constants';
+
 export interface IAction {
     type: string
     payload?: any
 }
-
-export enum Types {
-    USER_LOGIN_REQUEST  = 'user/login_request',
-    USER_LOGIN_SUCCESS  = 'user/login_success',
-    USER_LOGOUT_REQUEST = 'user/logout_request',
-    USER_LOGOUT_SUCCESS = 'user/logout_success'
-};
 
 export const userLoginRequest = (username, password): IAction => {
     return {

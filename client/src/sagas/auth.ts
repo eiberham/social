@@ -1,5 +1,6 @@
 import { takeLatest, call, fork, put, takeEvery } from 'redux-saga/effects';
 import * as actions from '../actions/auth';
+import { Types } from '../constants';
 import api from '../api';
 
 function* userLogin(action: actions.IAction){
@@ -18,11 +19,11 @@ function* userLogout() {
 }
 
 export function* watchUserLoginRequest() {
-    yield takeEvery(actions.Types.USER_LOGIN_REQUEST, userLogin);
+    yield takeEvery(Types.USER_LOGIN_REQUEST, userLogin);
 }
 
 export function* watchUserLogoutRequest() {
-    yield takeEvery(actions.Types.USER_LOGOUT_REQUEST, userLogout);
+    yield takeEvery(Types.USER_LOGOUT_REQUEST, userLogout);
 }
 
 const authSagas = [

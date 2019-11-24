@@ -1,13 +1,17 @@
 import * as React from 'react';
 import "./styles.scss";
 import { connect } from 'react-redux';
+import { bindActionCreators, Dispatch } from 'redux';
 
 import useForm from 'react-hook-form';
 import { Form, Button } from 'semantic-ui-react';
 import { Link, Redirect } from 'react-router-dom';
 
+import { userSignUpRequest } from '../../actions/signup';
+
 export interface SignUpProps {
-    authenticated: boolean
+    authenticated: boolean,
+    userSignUpRequest: (name: string, email: string, country: string, username: string, password: string) => void
 }
 
 interface ISignUp {
@@ -22,7 +26,7 @@ const Component: React.FC<SignUpProps> = props => {
     const { register, handleSubmit, errors } = useForm();
 
     const onSubmit = (values: ISignUp) => {
-        
+        props.userSignUpRequest(...values)
     };
 
     const { authenticated } = props;
@@ -85,12 +89,18 @@ const Component: React.FC<SignUpProps> = props => {
     );
 }
 
+const mapDispatchToProps = (dispatch: Dispatch) => {
+    return bindActionCreators({
+        userSignUpRequest
+    }, dispatch);
+}
+
 const mapStateToProps = ({ auth }) => {
     return {
         authenticated: auth.authenticated
     }
 }
 
-const SignUp = connect(mapStateToProps, null)(Component);
+const SignUp = connect(mapStateToProps, mapDispatchToProps)(Component);
 
 export { SignUp };
