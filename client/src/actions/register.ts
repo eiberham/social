@@ -5,17 +5,22 @@ import { IAction } from './auth';
 export const userSignUpRequest = (
     name: string, 
     email: string, 
+    country: string,
     username: string, 
     password: string
     ): IAction => {
+        console.log("passes through action");
         return {
-            type: Types.USER_LOGIN_REQUEST,
+            type: Types.USER_SIGNUP_REQUEST,
             payload: {
-                name, email, username, password
+                name, email, country, username, password
             }
         }
 };
 
 export const userSignUpSuccess = (): IAction => ({
-    type: Types.USER_LOGIN_SUCCESS
+    type: Types.USER_SIGNUP_SUCCESS,
+    payload: {
+        message: 'Registration complete'
+    }
 });

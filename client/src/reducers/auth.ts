@@ -2,10 +2,9 @@ import { IAction } from '../actions/auth';
 import { Types } from '../constants';
 
 const INITIAL_STATE = {
-    auth: {
-        token: null,
-        authenticated: false
-    }
+    token: null,
+    authenticated: false,
+    error: null
 };
 
 const auth = (state = INITIAL_STATE, action: IAction) => {

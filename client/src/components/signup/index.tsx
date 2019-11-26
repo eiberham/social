@@ -7,26 +7,18 @@ import useForm from 'react-hook-form';
 import { Form, Button } from 'semantic-ui-react';
 import { Link, Redirect } from 'react-router-dom';
 
-import { userSignUpRequest } from '../../actions/signup';
+import { userSignUpRequest } from '../../actions/register';
 
 export interface SignUpProps {
     authenticated: boolean,
     userSignUpRequest: (name: string, email: string, country: string, username: string, password: string) => void
 }
 
-interface ISignUp {
-    name:       string,
-    email:      string,
-    country:    string,
-    username:   string,
-    password:   string
-}
-
 const Component: React.FC<SignUpProps> = props => {
     const { register, handleSubmit, errors } = useForm();
 
-    const onSubmit = (values: ISignUp) => {
-        props.userSignUpRequest(...values)
+    const onSubmit = ({name, email, country, username, password}) => {
+        props.userSignUpRequest(name, email, country, username, password)
     };
 
     const { authenticated } = props;
