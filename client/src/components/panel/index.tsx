@@ -18,26 +18,27 @@ const Panel: React.FC<{}> = props => {
                     <Grid.Column width={4}>
                         <Menu fluid vertical tabular>
                             <Menu.Item
-                            name='events'
-                            active={active === 'events'}
-                            onClick={handleItemClick}
+                                name='events'
+                                active={active === 'events'}
+                                onClick={handleItemClick}
+                            />
+                            <Menu.Item
+                                name='pics'
+                                active={active === 'pics'}
+                                onClick={handleItemClick}
+                            />
+                            <Menu.Item
+                                name='companies'
+                                active={active === 'companies'}
+                                onClick={handleItemClick}
+                            />
+                            <Menu.Item
+                                name='settings'
+                                active={active === 'settings'}
+                                onClick={handleItemClick}
                             />
                         </Menu>
-                        <Menu.Item
-                            name='pics'
-                            active={active === 'pics'}
-                            onClick={handleItemClick}
-                        />
-                        <Menu.Item
-                            name='companies'
-                            active={active === 'companies'}
-                            onClick={handleItemClick}
-                        />
-                        <Menu.Item
-                            name='links'
-                            active={active === 'links'}
-                            onClick={handleItemClick}
-                        />
+                        
                     </Grid.Column>
 
                     <Grid.Column stretched width={12}>
