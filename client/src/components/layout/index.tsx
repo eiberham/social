@@ -8,6 +8,7 @@ import { Footer } from '../footer';
 
 import { Login } from '../login';
 import { SignUp } from '../signup';
+import { Panel } from '../panel';
 
 export const Layout: React.FC<{}> = () => {
     const history = createBrowserHistory();
@@ -19,6 +20,7 @@ export const Layout: React.FC<{}> = () => {
                     <Route exact path="/" component={Login}></Route>
                     <Route path="/login" component={Login}></Route>
                     <Route path="/signup" component={SignUp}></Route>
+                    <Route path="/panel" component={Panel}></Route>
                 </Switch>
                 <Footer />
             </BrowserRouter>
