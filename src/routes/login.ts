@@ -5,10 +5,10 @@ import jwt from "jsonwebtoken";
 
 const router: Router = Router();
 
-router.post('/', async (req: Request, res: Response) => {
+router.post('/', (req: Request, res: Response) => {
     const { username, password } = req.body;
 
-    await User.findOne({
+    User.findOne({
         where: {
             username
         }

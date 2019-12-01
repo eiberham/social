@@ -14,6 +14,7 @@ const Panel: React.FC<{}> = props => {
     return (
         <React.Fragment>
             <section className="panel">
+                <h1>Panel</h1>
                 <Grid>
                     <Grid.Column width={4}>
                         <Menu fluid vertical tabular>
@@ -23,18 +24,18 @@ const Panel: React.FC<{}> = props => {
                                 onClick={handleItemClick}
                             />
                             <Menu.Item
-                                name='pics'
-                                active={active === 'pics'}
-                                onClick={handleItemClick}
-                            />
-                            <Menu.Item
-                                name='companies'
-                                active={active === 'companies'}
+                                name='history'
+                                active={active === 'history'}
                                 onClick={handleItemClick}
                             />
                             <Menu.Item
                                 name='settings'
                                 active={active === 'settings'}
+                                onClick={handleItemClick}
+                            />
+                            <Menu.Item
+                                name='support'
+                                active={active === 'support'}
                                 onClick={handleItemClick}
                             />
                         </Menu>

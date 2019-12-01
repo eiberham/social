@@ -11,13 +11,15 @@ import { userLoginRequest } from '../../actions/auth';
 
 export interface LoginProps {
     userLoginRequest: (username: string, password: string) => any;
+    history: any
 }
 
 const Component: React.FC<LoginProps> = props => {
-    const { register, handleSubmit, errors } = useForm();
+    const { register, handleSubmit, errors } = useForm(); console.log("login props: ", props);
 
     const onSubmit = ({ username, password }) => {
         props.userLoginRequest(username, password);
+        props.history.push("/panel");
     };
 
     return (

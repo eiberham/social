@@ -3,11 +3,11 @@ import User from "../models/user";
 
 const router: Router = Router();
 
-router.post('/', async (req: Request, res: Response) => {
+router.post('/', (req: Request, res: Response) => {
     const { name, email, country, username, password } = req.body;
 
     try {
-        await User.findOrCreate({
+        User.findOrCreate({
             where: { username, email },
             defaults: { name, email, country, username, password }
         })
