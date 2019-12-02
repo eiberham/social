@@ -7,13 +7,17 @@ import compression from "compression";
 import cookieParser from "cookie-parser";
 import helmet from "helmet";
 import User from "./models/user";
+import Event from './models/event';
 import register from "./routes/register";
 import login from "./routes/login";
+import events from "./routes/events";
 
 import dotenv from "dotenv";
 dotenv.config();
 // tslint:disable-next-line:no-console
 User.sync({force: false}).then(() => console.log("done"));
+// tslint:disable-next-line:no-console
+Event.sync({force: false}).then(() => console.log("done"));
 
 const app = express();
 const port: string = process.env.PORT!;
@@ -53,6 +57,7 @@ app.get( "/", ( req: Request, res: Response ) => {
 
 app.use("/api/register", register);
 app.use("/api/login", login);
+app.use("/api/events", events);
 
 /**
  * The readFileSync function evaluates relative paths

@@ -10,7 +10,8 @@ class Event extends Model {
     public ending!      : Date;
 }
 
-Event.init({
+Event.init(
+  {
     id: {
       type: DataTypes.INTEGER.UNSIGNED,
       autoIncrement: true,
@@ -29,19 +30,21 @@ Event.init({
         allowNull: true
     },
     date: {
-      type: new DataTypes.DATEONLY,
+      type: new DataTypes.DATEONLY(),
       allowNull: false
     },
     opening: {
-      type: new DataTypes.DATE,
+      type: new DataTypes.DATE(),
       allowNull: false
     },
     ending: {
-      type: new DataTypes.DATE
+      type: new DataTypes.DATE()
     }
-  }, {
+  },
+  {
     tableName: 'events',
     sequelize: db,
-  });
+  }
+);
 
 export default Event;
