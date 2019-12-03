@@ -4,6 +4,8 @@ import './styles.scss';
 
 import { Grid, Menu, Segment } from 'semantic-ui-react';
 
+import { Events } from '../events';
+
 const Panel: React.FC<{}> = props => {
     const [active, setActive] = useState('events');
 
@@ -44,8 +46,7 @@ const Panel: React.FC<{}> = props => {
 
                     <Grid.Column stretched width={12}>
                         <Segment>
-                            This is an stretched grid column. This segment will always match the
-                            tab height
+                            <Events />
                         </Segment>
                     </Grid.Column>
                 </Grid>
