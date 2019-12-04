@@ -1,13 +1,14 @@
 import { call, fork, put, takeEvery } from 'redux-saga/effects';
-import * as actions from '../actions/auth';
+import * as actions from '../actions/events';
+import { IAction } from '../actions/auth';
 import { Types } from '../constants';
 import api from '../api';
 
-function* getEvents(action: actions.IAction){
+function* getEvents(action: IAction){
     try {
         const {data} = yield call(api.post, '/events', action.payload);
         console.log("data: ", data);
-        //yield put(actions.userLoginSuccess({}));
+        yield put(actions.eventsGetSuccess(data.events));
     } catch(e) {
         //yield put(actions.errorResponse(e.message))
     }

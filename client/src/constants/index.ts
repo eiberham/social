@@ -6,4 +6,5 @@ export enum Types {
     USER_SIGNUP_REQUEST   =   'user/signup_request',
     USER_SIGNUP_SUCCESS   =   'user/signup_success',
     GET_EVENTS_REQUEST    =   'event/get_request',
+    GET_EVENTS_SUCCESS    =   'event/get_success'
 };

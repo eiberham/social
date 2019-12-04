@@ -1,13 +1,22 @@
 import * as React from 'react';
+import { useEffect, useCallback } from 'react';
 import "./styles.scss";
+
+import { connect } from 'react-redux';
+import { bindActionCreators, Dispatch } from 'redux';
+import { eventsGetRequest } from '../../actions/events';
 
 import { Table } from 'semantic-ui-react';
 
 export interface EventProps {
-    
+    eventsGetRequest: () => any;
 }
 
 const Component: React.FC<EventProps> = props => {
+    useEffect(() => {
+        console.log("pasa por el useEffect");
+        props.eventsGetRequest();
+    }, []);
     return (
         <React.Fragment>
             <h3>Social events given in the last weeks.</h3>
@@ -42,6 +51,12 @@ const Component: React.FC<EventProps> = props => {
     );
 };
 
-const Events = Component;
+const mapDispatchToProps = (dispatch: Dispatch) => {
+    return bindActionCreators({
+        eventsGetRequest
+    }, dispatch)
+};
+
+const Events = connect(null, mapDispatchToProps)(Component);
 
 export { Events };
