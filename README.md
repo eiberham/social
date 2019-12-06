@@ -5,6 +5,10 @@ This app is intended to let us set and manage events ( it was designed mostly th
 
 This app was also an excuse to practice the usage of typescript and redux/saga with react and to leave a reference online for future projects i might be working on, so hope you like it and get inspired.
 
+<p align="center">
+  <img src="./client/social.png" alt="snapshot" />  
+</p>
+
 <table border="0" cellspacing="0" cellpadding="0" style="border-collapse: collapse; border: none;">
   <tr>
     <td><img alt="GitHub" src="https://img.shields.io/github/license/wwleak/social?style=for-the-badge"></td>
@@ -21,3 +25,4 @@ To generate your own self signed ssl certificate for development purposes, run t
 ```console
 foo@bar:~$ openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365
 ```
+This project is currently in development.
