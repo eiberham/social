@@ -10,12 +10,15 @@ import { Table } from 'semantic-ui-react';
 
 export interface EventProps {
     eventsGetRequest: () => any;
+    events: Array<any>
 }
 
 const Component: React.FC<EventProps> = props => {
     useEffect(() => {
         props.eventsGetRequest();
     }, []);
+    const { events } = props;
+    console.log("events: ", events);
     return (
         <React.Fragment>
             <h3>Social events given in the last weeks.</h3>
@@ -29,32 +32,20 @@ const Component: React.FC<EventProps> = props => {
                 </Table.Header>
 
                 <Table.Body>
-                    <Table.Row>
-                        <Table.Cell>John</Table.Cell>
-                        <Table.Cell>Approved</Table.Cell>
-                        <Table.Cell textAlign='right'>None</Table.Cell>
-                    </Table.Row>
-                    <Table.Row>
-                        <Table.Cell>Jamie</Table.Cell>
-                        <Table.Cell>Approved</Table.Cell>
-                        <Table.Cell textAlign='right'>Requires call</Table.Cell>
-                    </Table.Row>
-                    <Table.Row>
-                        <Table.Cell>Jill</Table.Cell>
-                        <Table.Cell>Denied</Table.Cell>
-                        <Table.Cell textAlign='right'>None</Table.Cell>
-                    </Table.Row>
+                    { events && events.map( event => (
+                        <Table.Row>
+                            <Table.Cell>{event.name}</Table.Cell>
+                            <Table.Cell>{event.description}</Table.Cell>
+                            <Table.Cell textAlign='right'>{event.organizer}</Table.Cell>
+                        </Table.Row>
+                    ))}
                 </Table.Body>
             </Table>
         </React.Fragment>
     );
 };
 
-const mapStateToProps = state => {
-    return {
-        events: state.events
-    }
-}
+const mapStateToProps = ({events: {events}}) => ({ events });
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
     return bindActionCreators({
