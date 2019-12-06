@@ -9,7 +9,6 @@ export const userSignUpRequest = (
     username: string, 
     password: string
     ): IAction => {
-        console.log("passes through action");
         return {
             type: Types.USER_SIGNUP_REQUEST,
             payload: {

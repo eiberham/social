@@ -8,9 +8,11 @@ export const eventsGetRequest = (): IAction => {
     }
 };
 
-export const eventsGetSuccess = (events): IAction => ({
-    type: Types.GET_EVENTS_SUCCESS,
-    payload: {
-        events
+export const eventsGetSuccess = (events): IAction => {
+    return {
+        type: Types.GET_EVENTS_SUCCESS,
+        payload: {
+            events
+        }
     }
-});
+};

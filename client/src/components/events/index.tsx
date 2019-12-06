@@ -14,7 +14,6 @@ export interface EventProps {
 
 const Component: React.FC<EventProps> = props => {
     useEffect(() => {
-        console.log("pasa por el useEffect");
         props.eventsGetRequest();
     }, []);
     return (
@@ -51,12 +50,18 @@ const Component: React.FC<EventProps> = props => {
     );
 };
 
+const mapStateToProps = state => {
+    return {
+        events: state.events
+    }
+}
+
 const mapDispatchToProps = (dispatch: Dispatch) => {
     return bindActionCreators({
         eventsGetRequest
     }, dispatch)
 };
 
-const Events = connect(null, mapDispatchToProps)(Component);
+const Events = connect(mapStateToProps, mapDispatchToProps)(Component);
 
 export { Events };

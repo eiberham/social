@@ -6,14 +6,12 @@ import api from '../api';
 
 function* getEvents(action: IAction){
     try {
-        const {data} = yield call(api.post, '/events', action.payload);
-        console.log("data: ", data);
-        yield put(actions.eventsGetSuccess(data.events));
+        const {data: {events}} = yield call(api.get, '/events', action.payload);
+        yield put(actions.eventsGetSuccess(events));
     } catch(e) {
         //yield put(actions.errorResponse(e.message))
     }
 }
-
 
 export function* watchGetEventsRequest() {
     yield takeEvery(Types.GET_EVENTS_REQUEST, getEvents);
