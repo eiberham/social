@@ -1,21 +1,24 @@
 import * as React from 'react';
+import { useState } from 'react';
 import "./styles.scss";
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
 
 import useForm from 'react-hook-form';
-import { Form, Button } from 'semantic-ui-react';
+import { Form, Button, Message } from 'semantic-ui-react';
 import { Link, Redirect } from 'react-router-dom';
 
 import { userSignUpRequest } from '../../actions/register';
 
 export interface SignUpProps {
+    error: string,
     authenticated: boolean,
-    userSignUpRequest: (name: string, email: string, country: string, username: string, password: string) => void
+    userSignUpRequest: (name: string, email: string, country: string, username: string, password: string, repeat: string) => void
 }
 
 const Component: React.FC<SignUpProps> = props => {
     const { register, handleSubmit, errors } = useForm();
+    const [visible, setVisible] = useState(true);
 
     const countryOptions = [
         { key: 'af', value: 'af', flag: 'af', text: 'Afghanistan' },
@@ -43,12 +46,14 @@ const Component: React.FC<SignUpProps> = props => {
         { key: 'bj', value: 'bj', flag: 'bj', text: 'Benin' },
       ];
 
-    const onSubmit = ({name, email, country, username, password}, e) => {
-        props.userSignUpRequest(name, email, country, username, password);
+    const onSubmit = ({name, email, country, username, password, repeat}, e) => {
+        props.userSignUpRequest(name, email, country, username, password, repeat);
         e.target.reset();
     };
 
-    const { authenticated } = props;
+    const onDismiss = () => setVisible(false);
+
+    const { authenticated, error } = props;
 
     console.log("authenticated: ", authenticated);
     if( authenticated ) return <Redirect to="/login" />
@@ -56,6 +61,12 @@ const Component: React.FC<SignUpProps> = props => {
     return (
         <div className="signup">
             <div className="signup__form">
+                { visible ? <Message error
+                    onDismiss={onDismiss}
+                    header='Error'
+                    content={`${error}`}
+                /> : ''}
+
                 <h2>Sign Up</h2>
                 <div>
                     Already have an account ? <Link to="/login">Log In</Link>
@@ -110,6 +121,16 @@ const Component: React.FC<SignUpProps> = props => {
                             {errors.password && 'Password is required.'}
                     </Form.Field>
 
+                    <Form.Field>
+                        <label>Repeat Password</label>
+                        <input 
+                            name="repeat" 
+                            type="password" 
+                            placeholder="Password" 
+                            ref={register({ required: true })} />
+                            {errors.repeat && 'Password is required.'}
+                    </Form.Field>
+
                     <Button type="submit" color="red">
                         Sign Up
                     </Button>
@@ -127,7 +148,8 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
 
 const mapStateToProps = ({ auth }) => {
     return {
-        authenticated: auth.authenticated
+        authenticated: auth.authenticated,
+        error: auth.error
     }
 }
 
