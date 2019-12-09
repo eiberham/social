@@ -34,7 +34,7 @@ const Component: React.FC<EventProps> = props => {
 
                 <Table.Body>
                     { events && events.map( event => (
-                        <Table.Row>
+                        <Table.Row key={event.id}>
                             <Table.Cell>{event.name}</Table.Cell>
                             <Table.Cell>{event.description}</Table.Cell>
                             <Table.Cell textAlign='right'>{event.organizer}</Table.Cell>

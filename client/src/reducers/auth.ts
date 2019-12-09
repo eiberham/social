@@ -19,6 +19,15 @@ const auth = (state = INITIAL_STATE, action: IAction) => {
                     authenticated: true
                 //}
             }
+        case Types.USER_LOGIN_ERROR:
+            console.log("llama al reducer error");
+            const { code, message } = action.payload.error;
+            return {
+                ...state,
+                error: code === 401 
+                ? 'User or Password Incorrect' 
+                : message
+            }
         case Types.USER_LOGOUT_SUCCESS:
             return {
                 ...state,

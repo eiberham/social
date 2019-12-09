@@ -34,12 +34,15 @@ router.post('/', (req: Request, res: Response) => {
                             });
                         }
                     );
+                } else {
+                    res.status(401).json({
+                        code: 401,
+                        message: 'Unauthorized'
+                    });
                 }
             });
         }
 
-    }).catch( () => {
-        res.status(500);
     });
 });
 
