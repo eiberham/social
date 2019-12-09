@@ -13,7 +13,7 @@ import { Panel } from '../panel';
 export const Layout: React.FC<{}> = () => {
     const history = createBrowserHistory();
     return (
-        <div className="content">
+        <div className="container">
             <BrowserRouter>
                 <Header />
                 <Switch>

@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
 import { eventsGetRequest } from '../../actions/events';
 
-import { Table } from 'semantic-ui-react';
+import { Table, Button, Icon } from 'semantic-ui-react';
 
 export interface EventProps {
     eventsGetRequest: () => any;
@@ -28,6 +28,7 @@ const Component: React.FC<EventProps> = props => {
                         <Table.HeaderCell>Name</Table.HeaderCell>
                         <Table.HeaderCell>Description</Table.HeaderCell>
                         <Table.HeaderCell>Organizer</Table.HeaderCell>
+                        <Table.HeaderCell>Date</Table.HeaderCell>
                     </Table.Row>
                 </Table.Header>
 
@@ -37,9 +38,27 @@ const Component: React.FC<EventProps> = props => {
                             <Table.Cell>{event.name}</Table.Cell>
                             <Table.Cell>{event.description}</Table.Cell>
                             <Table.Cell textAlign='right'>{event.organizer}</Table.Cell>
+                            <Table.Cell textAlign='right'>{event.date}</Table.Cell>
                         </Table.Row>
                     ))}
                 </Table.Body>
+
+                <Table.Footer fullWidth>
+                    <Table.Row>
+                        <Table.HeaderCell />
+                        <Table.HeaderCell colSpan='4'>
+                        <Button
+                            floated='right'
+                            icon
+                            labelPosition='left'
+                            primary
+                            size='small'
+                        >
+                            <Icon name='calendar alternate' /> New Event
+                        </Button>
+                        </Table.HeaderCell>
+                    </Table.Row>
+                </Table.Footer>
             </Table>
         </React.Fragment>
     );
