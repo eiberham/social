@@ -71,7 +71,7 @@ const Component: React.FC<LoginProps> = props => {
     )
 };
 
-const mapStateToProps = state => ({ error: state.error});
+const mapStateToProps = state => ({ error: state.auth.error});
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
     return bindActionCreators({

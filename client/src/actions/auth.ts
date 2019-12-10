@@ -24,9 +24,9 @@ export const userLoginSuccess = ({ token }): IAction => ({
     }
 });
 
-export const userLoginError = ({ code, message }): IAction => ({
+export const userLoginError = ({ message }): IAction => ({
     type: Types.USER_LOGIN_ERROR,
-    payload: { code, message }
+    payload: { message }
 });
 
 export const userLogoutRequest = (): IAction => ({

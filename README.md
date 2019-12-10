@@ -19,6 +19,18 @@ This app was also an excuse to practice the usage of typescript and redux/saga w
   </tr>
 </table>
 
+Regarding the techs involved in the development of this web application the following are present:
+
+<ul>
+  <li>Typescript</li>
+  <li>Redux / Redux Saga</li>
+  <li>React</li>
+  <li>Webpack</li>
+  <li>PostgreSQL</li>
+  <li>Express</li>
+  <li>Sequelize ORM</li>
+</ul>
+
 ## Side note
 To generate your own self signed ssl certificate for development purposes, run the following command on the terminal, but before make sure to run it inside the directory where your server.ts file is present:
 

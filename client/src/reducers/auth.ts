@@ -21,12 +21,10 @@ const auth = (state = INITIAL_STATE, action: IAction) => {
             }
         case Types.USER_LOGIN_ERROR:
             console.log("llama al reducer error");
-            const { code, message } = action.payload.error;
+            const { message } = action.payload;
             return {
                 ...state,
-                error: code === 401 
-                ? 'User or Password Incorrect' 
-                : message
+                error: message
             }
         case Types.USER_LOGOUT_SUCCESS:
             return {

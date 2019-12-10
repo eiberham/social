@@ -6,13 +6,11 @@ import api from '../api';
 function* userLogin(action: actions.IAction){
     try {
         const {data:{token}} = yield call(api.post, '/login', action.payload);
-        // TODO: handle errors
-        //if(code === 401)  yield put(actions.userLoginError(data));
         yield put(actions.userLoginSuccess({
             token
         }));
-    } catch(e) {
-        yield put(actions.userLoginError(e.message));
+    } catch({message}) {
+        yield put(actions.userLoginError({ message }));
     }
 }
 
