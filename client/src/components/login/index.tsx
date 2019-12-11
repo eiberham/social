@@ -66,6 +66,8 @@ const Component: React.FC<LoginProps> = props => {
                         Log In
                     </Button>
                 </Form>
+
+                <div className="g-signin2"></div>
             </div>
         </div>
     )
