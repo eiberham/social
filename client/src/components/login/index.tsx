@@ -40,6 +40,7 @@ const Component: React.FC<LoginProps> = props => {
                 <div>
                     Don't have an account yet ? <Link to="/signup">Sign up</Link>
                 </div>
+                <h5>Please, enter your access credentials to log into social</h5>
                 <Form onSubmit={handleSubmit(onSubmit)}>
                     
                     <Form.Field>
@@ -66,7 +67,7 @@ const Component: React.FC<LoginProps> = props => {
                         Log In
                     </Button>
                 </Form>
-
+                <span>Or</span>
                 <div className="g-signin2"></div>
             </div>
         </div>
