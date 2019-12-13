@@ -15,7 +15,6 @@
         href="//cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" />
 
     <meta name="google-signin-client_id" content="611435266062-0oqhm1gf59fl3paeg5ru18fbkhcqn44d.apps.googleusercontent.com" />
-    <script src="https://www.google.com/recaptcha/api.js?render=6Lc5h8cUAAAAAFTIuSBCGhQjeppW7VW5Q2zXPGws"></script>
 </head>
 <body>
     <script>
@@ -36,11 +35,6 @@
             'onfailure': onFailure
             });
         }
-        grecaptcha.ready(function() {
-            grecaptcha.execute('6Lc5h8cUAAAAAFTIuSBCGhQjeppW7VW5Q2zXPGws', {action: 'homepage'}).then(function(token) {
-                console.log("token recaptcha: ", token);
-            });
-        });
     </script>
     <!-- Google Platform Library-->
     <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>

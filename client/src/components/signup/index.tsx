@@ -3,6 +3,7 @@ import { useState } from 'react';
 import "./styles.scss";
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
+import { GoogleReCaptcha } from 'react-google-recaptcha-v3';
 
 import useForm from 'react-hook-form';
 import { Form, Button, Message } from 'semantic-ui-react';
@@ -130,6 +131,8 @@ const Component: React.FC<SignUpProps> = props => {
                             ref={register({ required: true })} />
                             {errors.repeat && 'Password is required.'}
                     </Form.Field>
+
+                    <GoogleReCaptcha onVerify={token => console.log(token)} />
 
                     <Button type="submit" color="red">
                         Sign Up
