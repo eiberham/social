@@ -141,7 +141,7 @@ const Component: React.FC<SignUpProps> = props => {
 
                     <GoogleReCaptcha onVerify={onVerify} />
 
-                    <Button type="submit" color="red">
+                    <Button type="submit" color="red" fluid>
                         Sign Up
                     </Button>
                 </Form>

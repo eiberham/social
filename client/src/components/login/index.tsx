@@ -5,9 +5,9 @@ import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
 
 import useForm from 'react-hook-form';
-import { Form, Button, Message } from 'semantic-ui-react';
+import { Form, Button, Message, Icon, Divider } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
-
+import { GoogleLogin } from 'react-google-login';
 import { userLoginRequest } from '../../actions/auth';
 
 export interface LoginProps {
@@ -27,6 +27,10 @@ const Component: React.FC<LoginProps> = props => {
     };
 
     const onDismiss = () => setVisible(false);
+
+    const responseGoogle = (response) => {
+        console.log(response);
+    }
 
     return (
         <div className="login">
@@ -63,12 +67,25 @@ const Component: React.FC<LoginProps> = props => {
                             {errors.password && 'Password is required.'}
                     </Form.Field>
 
-                    <Button type="submit" color="red">
+                    <Button type="submit" color="red" fluid>
                         Log In
                     </Button>
                 </Form>
-                <span>Or</span>
-                <div className="g-signin2"></div>
+
+                <Divider horizontal>Or</Divider>
+
+                <GoogleLogin
+                    clientId="611435266062-0oqhm1gf59fl3paeg5ru18fbkhcqn44d.apps.googleusercontent.com"
+                    render={renderProps => (
+                        <Button color='blue' fluid onClick={renderProps.onClick}>
+                            <Icon name='google' /> Log In with Google
+                        </Button>
+                    )}
+                    buttonText="Login"
+                    onSuccess={responseGoogle}
+                    onFailure={responseGoogle}
+                    cookiePolicy={'single_host_origin'}
+                />
             </div>
         </div>
     )
