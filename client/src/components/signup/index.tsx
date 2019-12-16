@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import "./styles.scss";
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
@@ -14,12 +14,13 @@ import { userSignUpRequest } from '../../actions/register';
 export interface SignUpProps {
     error: string,
     authenticated: boolean,
-    userSignUpRequest: (name: string, email: string, country: string, username: string, password: string, repeat: string) => void
+    userSignUpRequest: (name: string, email: string, country: string, username: string, password: string, repeat: string, token: string) => void
 }
 
 const Component: React.FC<SignUpProps> = props => {
     const { register, handleSubmit, errors } = useForm();
     const [visible, setVisible] = useState(true);
+    const [token, setToken] = useState(null);
 
     const countryOptions = [
         { key: 'af', value: 'af', flag: 'af', text: 'Afghanistan' },
@@ -48,11 +49,17 @@ const Component: React.FC<SignUpProps> = props => {
       ];
 
     const onSubmit = ({name, email, country, username, password, repeat}, e) => {
-        props.userSignUpRequest(name, email, country, username, password, repeat);
+        props.userSignUpRequest(name, email, country, username, password, repeat, token);
         e.target.reset();
     };
 
     const onDismiss = () => setVisible(false);
+
+    const onVerify = token => {
+        // TODO: save token in component state and pass it later along with form input values to action creator
+        // before, create an endpoint in server that makes a requests to recaptcha verification endpoint
+        setToken(token);
+    }
 
     const { authenticated, error } = props;
 
@@ -132,7 +139,7 @@ const Component: React.FC<SignUpProps> = props => {
                             {errors.repeat && 'Password is required.'}
                     </Form.Field>
 
-                    <GoogleReCaptcha onVerify={token => console.log(token)} />
+                    <GoogleReCaptcha onVerify={onVerify} />
 
                     <Button type="submit" color="red">
                         Sign Up

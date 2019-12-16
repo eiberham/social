@@ -7,12 +7,14 @@ export const userSignUpRequest = (
     email: string, 
     country: string,
     username: string, 
-    password: string
+    password: string,
+    repeat: string,
+    token: string
     ): IAction => {
         return {
             type: Types.USER_SIGNUP_REQUEST,
             payload: {
-                name, email, country, username, password
+                name, email, country, username, password, repeat, token
             }
         }
 };

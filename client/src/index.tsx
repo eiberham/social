@@ -29,6 +29,7 @@ ReactDOM.render(
     <Provider store={store}>
         <GoogleReCaptchaProvider
             reCaptchaKey="6Lc5h8cUAAAAAFTIuSBCGhQjeppW7VW5Q2zXPGws"
+            language="en"
         >
             <App />
         </GoogleReCaptchaProvider>

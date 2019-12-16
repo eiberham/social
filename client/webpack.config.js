@@ -38,6 +38,12 @@ module.exports = {
     },
     devServer: {
         historyApiFallback: true,
+        disableHostCheck: true,
+        host: '127.0.0.1',
+        port: 80,
+        /* proxy: {
+            '/api': 'https://localhost:3000'
+        } */
     },
     plugins: [
         new HtmlWebpackPlugin({ 
