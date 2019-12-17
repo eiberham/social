@@ -81,7 +81,7 @@ const Component: React.FC<SignUpProps> = props => {
                 </div>
                 <Form onSubmit={handleSubmit(onSubmit)}>
 
-                    <Form.Field>
+                    <Form.Field required>
                         <label>Name</label>
                         <input 
                             name="name" 
@@ -90,7 +90,7 @@ const Component: React.FC<SignUpProps> = props => {
                             {errors.name && 'Name is required.'}
                     </Form.Field>
 
-                    <Form.Field>
+                    <Form.Field required>
                         <label>Email</label>
                         <input 
                             name="email" 
@@ -99,7 +99,7 @@ const Component: React.FC<SignUpProps> = props => {
                             {errors.email && 'Email is required.'}
                     </Form.Field>
 
-                    <Form.Field>
+                    <Form.Field required>
                         <label>Country</label>
                         <select 
                             name="country" 
@@ -109,8 +109,23 @@ const Component: React.FC<SignUpProps> = props => {
                             <option value="AR">Argentina</option>
                         </select>
                     </Form.Field>
+
+                    <Form.Field required>
+                        <div className="ui fluid search selection dropdown">
+                            <input type="hidden" name="country" />
+                            <i className="dropdown icon"></i>
+                            <div className="default text">Select Country</div>
+                            <div className="menu">
+                                {countryOptions.map(option => (
+                                     <div className="item" data-value={option.value} key={option.text}>
+                                        <i className={`${option.flag} flag`}></i>{option.text}
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </Form.Field>
                     
-                    <Form.Field>
+                    <Form.Field required>
                         <label>Username</label>
                         <input 
                             name="username" 
@@ -119,7 +134,7 @@ const Component: React.FC<SignUpProps> = props => {
                             {errors.username && 'Username is required.'}
                     </Form.Field>
 
-                    <Form.Field>
+                    <Form.Field required>
                         <label>Password</label>
                         <input 
                             name="password" 
@@ -129,7 +144,7 @@ const Component: React.FC<SignUpProps> = props => {
                             {errors.password && 'Password is required.'}
                     </Form.Field>
 
-                    <Form.Field>
+                    <Form.Field required>
                         <label>Repeat Password</label>
                         <input 
                             name="repeat" 

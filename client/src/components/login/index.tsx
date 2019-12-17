@@ -47,7 +47,7 @@ const Component: React.FC<LoginProps> = props => {
                 <h5>Please, enter your access credentials to log into social</h5>
                 <Form onSubmit={handleSubmit(onSubmit)}>
                     
-                    <Form.Field>
+                    <Form.Field required>
                         <label>Username</label>
                         <input 
                             name="username" 
@@ -56,7 +56,7 @@ const Component: React.FC<LoginProps> = props => {
                             {errors.username && 'Username is required.'}
                     </Form.Field>
 
-                    <Form.Field>
+                    <Form.Field required>
                         <label>Password</label>
                         <input 
                             name="password" 
