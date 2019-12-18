@@ -20,6 +20,7 @@ router.post('/', async (req: Request, res: Response) => {
                 code: 401,
                 message: 'Recaptcha validation failed'
             });
+            return;
         }
     }
 

@@ -25,3 +25,8 @@ export const userSignUpSuccess = (): IAction => ({
         message: 'Registration complete'
     }
 });
+
+export const userSignUpError = ({ error }): IAction => ({
+    type: Types.USER_SIGNUP_ERROR,
+    payload: { error }
+});

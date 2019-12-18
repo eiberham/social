@@ -171,10 +171,10 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
     }, dispatch);
 }
 
-const mapStateToProps = ({ auth }) => {
+const mapStateToProps = ({ auth, register }) => {
     return {
         authenticated: auth.authenticated,
-        error: auth.error
+        error: register.error
     }
 }
 

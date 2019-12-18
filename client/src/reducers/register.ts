@@ -17,6 +17,11 @@ const signup = (state = INITIAL_STATE, action: IAction) => {
                 message: action.payload.message,
                 registered: true
             }
+        case Types.USER_SIGNUP_ERROR:
+            return {
+                ...state,
+                error: action.payload.error
+            }
         default:
             return state;
     }
