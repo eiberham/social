@@ -34,18 +34,27 @@ To generate your own self signed ssl certificate for development purposes, run t
 foo@bar:~$ openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365
 ```
 
-## How to run it
+## :rocket: How to run it
 
 Clone the repo
 
 ```console
 foo@bar:~$ git clone https://github.com/wwleak/social.git
 ```
+Change directory into the project's folder
+
+```console
+foo@bar:~$ cd social
+```
 
 Run server and client scripts
 
 ```console
-foo@bar:~$ sudo npm run dev && cd client & npm run start
+foo@bar:~$ sudo npm run dev && cd client && npm run start
 ```
+
+## :pushpin: License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
 This project is currently in development.
