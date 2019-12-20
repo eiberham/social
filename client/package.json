@@ -44,6 +44,7 @@
     "react-router-dom": "^5.1.2",
     "redux": "^4.0.4",
     "redux-saga": "0.16.2",
+    "reselect": "^4.0.0",
     "semantic-ui-react": "^0.88.1",
     "typesafe-actions": "^5.1.0"
   }

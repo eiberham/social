@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import "./styles.scss";
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
-
+import { authErrorSelector, authSelector } from '../../selectors';
 import useForm from 'react-hook-form';
 import { Form, Button, Message, Icon, Divider } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
@@ -11,19 +11,30 @@ import { GoogleLogin } from 'react-google-login';
 import { userLoginRequest } from '../../actions/auth';
 
 export interface LoginProps {
+    authenticated: boolean,
     error: string,
     userLoginRequest: (username: string, password: string) => any;
     history: any
 }
 
 const Component: React.FC<LoginProps> = props => {
-    const [visible, setVisible] = useState(true);
+    const [visible, setVisible] = useState(false);
     const { register, handleSubmit, errors } = useForm(); console.log("login props: ", props);
-    const { error } = props;
+    const { error, authenticated } = props;
+
+    useEffect(() => {
+        if(authenticated)
+            props.history.push("/panel");
+    }, [authenticated]);
+
+    useEffect(() => {
+        if(error !== null)
+            setVisible(true);
+    }, [error])
+    
 
     const onSubmit = ({ username, password }) => {
         props.userLoginRequest(username, password);
-        props.history.push("/panel");
     };
 
     const onDismiss = () => setVisible(false);
@@ -91,7 +102,10 @@ const Component: React.FC<LoginProps> = props => {
     )
 };
 
-const mapStateToProps = state => ({ error: state.auth.error});
+const mapStateToProps = state => ({ 
+    error: authErrorSelector(state),
+    authenticated: authSelector(state)
+});
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
     return bindActionCreators({
