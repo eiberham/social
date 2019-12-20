@@ -33,4 +33,19 @@ To generate your own self signed ssl certificate for development purposes, run t
 ```console
 foo@bar:~$ openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365
 ```
+
+## How to run it
+
+Clone the repo
+
+```console
+foo@bar:~$ git clone https://github.com/wwleak/social.git
+```
+
+Run server and client scripts
+
+```console
+foo@bar:~$ sudo npm run dev && cd client & npm run start
+```
+
 This project is currently in development.
