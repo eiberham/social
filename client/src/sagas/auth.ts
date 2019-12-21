@@ -9,7 +9,8 @@ function* userLogin(action: actions.IAction){
         yield put(actions.userLoginSuccess({
             token
         }));
-    } catch({message}) {
+    } catch(error) {
+        const { message } = error.response.data;
         yield put(actions.userLoginError({ message }));
     }
 }

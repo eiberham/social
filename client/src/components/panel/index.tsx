@@ -1,14 +1,26 @@
 import * as React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './styles.scss';
 
 import { Grid, Menu, Segment, Message } from 'semantic-ui-react';
-
+import { connect } from 'react-redux';
+import { authSelector } from '../../selectors';
 import { Events } from '../events';
 
-const Panel: React.FC<{}> = props => {
+interface PanelProps {
+    authenticated: boolean,
+    history: any
+}
+
+const Component: React.FC<PanelProps> = props => {
     const [active, setActive] = useState('events');
     const [visible, setVisible] = useState(true);
+    const { authenticated } = props;
+
+    useEffect(() => {
+        if(!authenticated)
+            props.history.push("/login");
+    }, [authenticated])
 
     const handleItemClick = (e, {name}) => {
         setActive(name);
@@ -62,6 +74,14 @@ const Panel: React.FC<{}> = props => {
         </React.Fragment>
     )
 };
+
+const mapStateToProps = state => {
+    return {
+        authenticated: authSelector(state)
+    }
+}
+
+const Panel = connect(mapStateToProps, null)(Component);
 
 export { Panel };
 

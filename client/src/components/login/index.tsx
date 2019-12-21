@@ -19,7 +19,7 @@ export interface LoginProps {
 
 const Component: React.FC<LoginProps> = props => {
     const [visible, setVisible] = useState(false);
-    const { register, handleSubmit, errors } = useForm(); console.log("login props: ", props);
+    const { register, handleSubmit, errors } = useForm();
     const { error, authenticated } = props;
 
     useEffect(() => {
