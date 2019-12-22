@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { useState, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import "./styles.scss";
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
 import { GoogleReCaptcha } from 'react-google-recaptcha-v3';
-
+import { registeredSelector, registerErrorSelector, authSelector } from '../../selectors';
 import useForm from 'react-hook-form';
 import { Form, Button, Message } from 'semantic-ui-react';
 import { Link, Redirect } from 'react-router-dom';
@@ -12,15 +12,29 @@ import { Link, Redirect } from 'react-router-dom';
 import { userSignUpRequest } from '../../actions/register';
 
 export interface SignUpProps {
+    registered: boolean,
     error: string,
     authenticated: boolean,
+    history: any,
     userSignUpRequest: (name: string, email: string, country: string, username: string, password: string, repeat: string, token: string) => void
 }
 
 const Component: React.FC<SignUpProps> = props => {
     const { register, handleSubmit, errors } = useForm();
-    const [visible, setVisible] = useState(true);
+    const [visible, setVisible] = useState(false);
     const [token, setToken] = useState(null);
+    const {authenticated, registered, error} = props;
+
+    useEffect(() => {
+        if(authenticated)
+            props.history.push("/panel");
+    }, [authenticated])
+
+    useEffect(() => {
+        if(!registered && error){
+            setVisible(true);
+        }
+    }, [registered, error]);
 
     const countryOptions = [
         { key: 'af', value: 'af', flag: 'af', text: 'Afghanistan' },
@@ -50,7 +64,7 @@ const Component: React.FC<SignUpProps> = props => {
 
     const onSubmit = ({name, email, country, username, password, repeat}, e) => {
         props.userSignUpRequest(name, email, country, username, password, repeat, token);
-        e.target.reset();
+        //e.target.reset();
     };
 
     const onDismiss = () => setVisible(false);
@@ -60,8 +74,6 @@ const Component: React.FC<SignUpProps> = props => {
         // before, create an endpoint in server that makes a requests to recaptcha verification endpoint
         setToken(token);
     }
-
-    const { authenticated, error } = props;
 
     console.log("authenticated: ", authenticated);
     if( authenticated ) return <Redirect to="/login" />
@@ -95,8 +107,14 @@ const Component: React.FC<SignUpProps> = props => {
                         <input 
                             name="email" 
                             placeholder="Email" 
-                            ref={register({ required: true })} />
-                            {errors.email && 'Email is required.'}
+                            ref={register({ 
+                                required: 'Email is required.',
+                                pattern: {
+                                    value: /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
+                                    message: 'Invalid email address',
+                                }
+                            })} />
+                            {errors.email && errors.email.message}
                     </Form.Field>
 
                     <Form.Field required>
@@ -171,10 +189,11 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
     }, dispatch);
 }
 
-const mapStateToProps = ({ auth, register }) => {
+const mapStateToProps = (state) => {
     return {
-        authenticated: auth.authenticated,
-        error: register.error
+        authenticated: authSelector(state),
+        error: registerErrorSelector(state),
+        registered: registeredSelector(state)
     }
 }
 

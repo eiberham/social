@@ -6,6 +6,10 @@ export const authTokenSelector = (state) => state.auth.token
 
 export const authSelector = (state) => state.auth.authenticated
 
+export const registeredSelector = (state) => state.register.registeredSelector
+
+export const registerErrorSelector = (state) => state.register.error 
+
 /* const getTodos = (state) => state.todos
 
 export const getVisibleTodos = createSelector(

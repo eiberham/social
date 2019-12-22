@@ -6,14 +6,12 @@ import api from '../api';
 
 
 function* userSignUp(action: IAction){
-    //debugger;
     try {
-        //debugger;
-        const { data } = yield call(api.post, '/register', action.payload);
-        console.log("response: ", data);
+        yield call(api.post, '/register', action.payload);
         yield put(actions.userSignUpSuccess());
-    } catch({message}) {
-        yield put(actions.userSignUpError({error: message}))
+    } catch(error) {
+        const { response: {data: {message}} } = error;
+        yield put(actions.userSignUpError({message}));
     }
 }
 

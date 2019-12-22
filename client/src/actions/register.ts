@@ -26,7 +26,7 @@ export const userSignUpSuccess = (): IAction => ({
     }
 });
 
-export const userSignUpError = ({ error }): IAction => ({
+export const userSignUpError = ({ message }): IAction => ({
     type: Types.USER_SIGNUP_ERROR,
-    payload: { error }
+    payload: { message }
 });
