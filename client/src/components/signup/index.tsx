@@ -75,9 +75,6 @@ const Component: React.FC<SignUpProps> = props => {
         setToken(token);
     }
 
-    console.log("authenticated: ", authenticated);
-    if( authenticated ) return <Redirect to="/login" />
-
     return (
         <div className="signup">
             <div className="signup__form">

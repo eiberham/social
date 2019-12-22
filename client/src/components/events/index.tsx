@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
 import { eventsGetRequest } from '../../actions/events';
 
-import { Table, Button, Icon } from 'semantic-ui-react';
+import { Table, Button, Icon, Pagination } from 'semantic-ui-react';
 
 export interface EventProps {
     eventsGetRequest: () => any;
@@ -52,10 +52,21 @@ const Component: React.FC<EventProps> = props => {
                             icon
                             labelPosition='left'
                             primary
-                            size='small'
+                            size='large'
                         >
                             <Icon name='calendar alternate' /> New Event
                         </Button>
+
+                        <Pagination
+                            inverted
+                            defaultActivePage={5}
+                            ellipsisItem={{ content: <Icon name='ellipsis horizontal' />, icon: true }}
+                            firstItem={{ content: <Icon name='angle double left' />, icon: true }}
+                            lastItem={{ content: <Icon name='angle double right' />, icon: true }}
+                            prevItem={{ content: <Icon name='angle left' />, icon: true }}
+                            nextItem={{ content: <Icon name='angle right' />, icon: true }}
+                            totalPages={10}
+                        />
                         </Table.HeaderCell>
                     </Table.Row>
                 </Table.Footer>

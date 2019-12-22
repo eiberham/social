@@ -18,8 +18,13 @@ const Component: React.FC<PanelProps> = props => {
     const { authenticated } = props;
 
     useEffect(() => {
-        if(!authenticated)
+        if(authenticated){
+            setTimeout(() => {
+                setVisible(false);
+            }, 10000);
+        } else {
             props.history.push("/login");
+        }
     }, [authenticated])
 
     const handleItemClick = (e, {name}) => {
@@ -65,7 +70,7 @@ const Component: React.FC<PanelProps> = props => {
                     </Grid.Column>
 
                     <Grid.Column stretched width={12}>
-                        <Segment>
+                        <Segment color='blue'>
                             <Events />
                         </Segment>
                     </Grid.Column>
