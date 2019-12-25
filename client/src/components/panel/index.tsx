@@ -6,6 +6,7 @@ import { Grid, Menu, Segment, Message } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { authSelector } from '../../selectors';
 import { Events } from '../events';
+import { Settings } from '../settings';
 
 interface PanelProps {
     authenticated: boolean,
@@ -72,6 +73,7 @@ const Component: React.FC<PanelProps> = props => {
                     <Grid.Column stretched width={12}>
                         <Segment color='blue'>
                             <Events />
+                            <Settings />
                         </Segment>
                     </Grid.Column>
                 </Grid>
