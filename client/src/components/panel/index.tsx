@@ -72,8 +72,8 @@ const Component: React.FC<PanelProps> = props => {
 
                     <Grid.Column stretched width={12}>
                         <Segment color='blue'>
-                            <Events />
-                            <Settings />
+                            {active === 'events' && <Events /> }
+                            {active === 'settings' && <Settings /> }
                         </Segment>
                     </Grid.Column>
                 </Grid>
