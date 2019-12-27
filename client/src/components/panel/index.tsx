@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { authSelector } from '../../selectors';
 import { Events } from '../events';
 import { Settings } from '../settings';
+import { About } from '../about';
 
 interface PanelProps {
     authenticated: boolean,
@@ -62,8 +63,8 @@ const Component: React.FC<PanelProps> = props => {
                                 onClick={handleItemClick}
                             />
                             <Menu.Item
-                                name='support'
-                                active={active === 'support'}
+                                name='about'
+                                active={active === 'about'}
                                 onClick={handleItemClick}
                             />
                         </Menu>
@@ -74,6 +75,7 @@ const Component: React.FC<PanelProps> = props => {
                         <Segment color='blue'>
                             {active === 'events' && <Events /> }
                             {active === 'settings' && <Settings /> }
+                            {active === 'about' && <About />}
                         </Segment>
                     </Grid.Column>
                 </Grid>
