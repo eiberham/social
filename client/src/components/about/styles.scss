@@ -1,0 +1,11 @@
+.about {
+    p {
+        text-align: justify;
+
+        &.drop-cap:first-letter {
+            font-size: 4.5em;
+            float: left;
+            margin-top: .15em;
+        }
+    }
+}
