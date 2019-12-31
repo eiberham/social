@@ -56,4 +56,13 @@ User.init({
     }
   });
 
+  /* User.beforeFind((user, {
+    instance: User,
+    mapToModel: true
+  }) => {
+    return bcrypt.hash(user.password, 10).then((hash) => {
+      user.password = hash;
+    });
+  }); */
+
 export default User;
