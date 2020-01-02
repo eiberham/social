@@ -3,7 +3,7 @@ import User from '../models/user';
 
 const router: Router = Router();
 
-//TODO: finish this endpoint
+// TODO: finish this endpoint
 router.post(`/:id/change_password`, async (req: Request, res: Response) => {
     const { id } = req.params;
     const { current, password, repeat } = req.body;
@@ -16,11 +16,11 @@ router.post(`/:id/change_password`, async (req: Request, res: Response) => {
         return;
     }
 
-    const user = await User.findOne({ 
-        where: { 
-            id, 
-            password: current 
-        } 
+    const user = await User.findOne({
+        where: {
+            id,
+            password: current
+        }
     });
 
     if ( user ){
