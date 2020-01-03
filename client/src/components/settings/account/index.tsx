@@ -1,16 +1,39 @@
 import * as React from 'react';
 import { useState } from 'react';
 import useForm from 'react-hook-form';
+import { connect } from 'react-redux';
+import { bindActionCreators, Dispatch } from 'redux';
+import { userChangePasswordRequest } from '../../../actions/users';
 
-import { Form, Button, Segment, Confirm, Checkbox, Divider, Label } from 'semantic-ui-react';
+import { 
+    Form, 
+    Button, 
+    Segment, 
+    Confirm, 
+    Checkbox, 
+    Divider, 
+    Label 
+} from 'semantic-ui-react';
 
-const Component: React.FC<{}> = props => {
+interface AccountProps {
+    userChangePasswordRequest: (
+        id: number, 
+        current: string, 
+        password: string, 
+        repeat: string
+    ) => any
+}
+
+const Component: React.FC<AccountProps> = props => {
     const { register, handleSubmit, errors } = useForm();
     const [open, setOpen] = useState(false);
     const [changePassword, setChangePassword] = useState(false);
+    const { userChangePasswordRequest } = props;
 
     const onSubmit = ({current, password, repeat}, e) => {
         console.log("form's been submitted: ", current, password, repeat);
+        const id = 1;
+        userChangePasswordRequest(id, current, password, repeat);
     };
 
     const onDeleteAccount = () => {
@@ -87,6 +110,12 @@ const Component: React.FC<{}> = props => {
     );
 }
 
-const Account = Component;
+const mapDispatchToProps = (dispatch: Dispatch) => {
+    return bindActionCreators({
+        userChangePasswordRequest
+    }, dispatch);
+}
+
+const Account = connect(null, mapDispatchToProps)(Component);
 
 export { Account };
