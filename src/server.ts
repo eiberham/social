@@ -11,6 +11,7 @@ import Event from './models/event';
 import register from "./routes/register";
 import login from "./routes/login";
 import events from "./routes/events";
+import users from "./routes/users";
 
 import dotenv from "dotenv";
 dotenv.config();
@@ -58,6 +59,7 @@ app.get( "/", ( req: Request, res: Response ) => {
 app.use("/api/register", register);
 app.use("/api/login", login);
 app.use("/api/events", events);
+app.use("/api/users", users);
 
 /**
  * The readFileSync function evaluates relative paths

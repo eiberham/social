@@ -1,4 +1,4 @@
-import { Request, Response, Router} from "express";
+import { Request, Response, Router } from "express";
 import User from '../models/user';
 
 const router: Router = Router();
@@ -34,3 +34,5 @@ router.post(`/:id/change_password`, async (req: Request, res: Response) => {
         })
     }
 });
+
+export default router;
