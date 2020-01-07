@@ -6,7 +6,7 @@ import api from '../api';
 function* changePassword(action: actions.IAction){
     const { id } = action.payload;
     try {
-        yield call(api.post, `/${id}/change_password`, action.payload);
+        yield call(api.post, `/users/${id}/change_password`, action.payload);
         yield put(actions.userChangePasswordSuccess());
     } catch(error) {
         const { message } = error.response.data;
@@ -15,7 +15,7 @@ function* changePassword(action: actions.IAction){
 }
 
 export function* watchUserChangePasswordRequest() {
-    yield takeEvery(Types.USER_SIGNUP_REQUEST, changePassword);
+    yield takeEvery(Types.USER_CHANGE_PASSWORD_REQUEST, changePassword);
 }
 
 const userSagas = [

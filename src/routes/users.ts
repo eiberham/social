@@ -26,7 +26,7 @@ router.post(`/:id/change_password`, async (req: Request, res: Response) => {
             const user = await User.findOne({
                 where: {
                     id,
-                    password: current
+                    password: hash
                 }
             });
 

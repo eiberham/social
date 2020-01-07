@@ -61,7 +61,7 @@ const Component: React.FC<AccountProps> = props => {
                             type="password" 
                             placeholder="Password"
                             ref={register({ required: true })} />
-                            {errors.password && 'Password is required.'}
+                            {errors.current && 'Password is required.'}
                     </Form.Field>
 
                     <Form.Field required>
@@ -71,7 +71,7 @@ const Component: React.FC<AccountProps> = props => {
                             type="password" 
                             placeholder="Password"
                             ref={register({ required: true })} />
-                            {errors.newpass && 'Password is required.'}
+                            {errors.password && 'Password is required.'}
                     </Form.Field>
 
                     <Form.Field required>
@@ -81,7 +81,7 @@ const Component: React.FC<AccountProps> = props => {
                             type="password" 
                             placeholder="Password"
                             ref={register({ required: true })} />
-                            {errors.newpass && 'Password is required.'}
+                            {errors.repeat && 'Password is required.'}
                     </Form.Field>
 
                     <Form.Field inline>
