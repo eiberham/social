@@ -42,6 +42,9 @@ router.post(`/:id/change_password`, async (req: Request, res: Response) => {
             }
         }
     });
+    /* res.status(200).json({
+        message: 'All good cowboy'
+    }) */
 });
 
 export default router;

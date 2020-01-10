@@ -42,11 +42,15 @@ module.exports = {
         host: '127.0.0.1',
         port: 80,
         compress: true,
+        open: true,
         proxy: {
             '/api': {
-                target: 'https://localhost:3000',
+                target: 'https://[::1]:3000',
                 secure: false,
-                changeOrigin: true
+                changeOrigin: true,
+                headers: {
+                    Connection: 'keep-alive'
+                }
             }
         }
     },
