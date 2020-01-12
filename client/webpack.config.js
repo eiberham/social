@@ -47,7 +47,7 @@ module.exports = {
             '/api': {
                 target: 'https://[::1]:3000',
                 secure: false,
-                changeOrigin: true,
+                //changeOrigin: true,
                 headers: {
                     Connection: 'keep-alive'
                 }
