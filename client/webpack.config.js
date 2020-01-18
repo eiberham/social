@@ -40,14 +40,14 @@ module.exports = {
         historyApiFallback: true,
         disableHostCheck: true,
         host: '127.0.0.1',
-        port: 80,
+        port: 8080,
         compress: true,
         open: true,
         proxy: {
-            '/api': {
+            '/api/**': {
                 target: 'https://[::1]:3000',
                 secure: false,
-                //changeOrigin: true,
+                changeOrigin: false,
                 headers: {
                     Connection: 'keep-alive'
                 }
