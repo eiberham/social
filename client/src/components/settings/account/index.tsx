@@ -12,7 +12,8 @@ import {
     Confirm, 
     Checkbox, 
     Divider, 
-    Label 
+    Label,
+    Message
 } from 'semantic-ui-react';
 
 interface AccountProps {
@@ -28,6 +29,7 @@ const Component: React.FC<AccountProps> = props => {
     const { register, handleSubmit, errors } = useForm();
     const [open, setOpen] = useState(false);
     const [changePassword, setChangePassword] = useState(false);
+    const [visible, setVisible] = useState(false);
     const { userChangePasswordRequest } = props;
 
     const onSubmit = ({current, password, repeat}, e) => {
@@ -40,8 +42,16 @@ const Component: React.FC<AccountProps> = props => {
         console.log("delete account");
     }
 
+    const onDismiss = () => setVisible(false);
+
     return (
         <React.Fragment>
+            { visible ? <Message info
+                    onDismiss={onDismiss}
+                    header='Welcome Back!'
+                    content='Your authentication has been completed.'
+                /> : ''}
+
             <Checkbox 
                 slider 
                 label={{ children: 'Change Password' }}

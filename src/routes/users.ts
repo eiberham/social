@@ -3,17 +3,13 @@ import User from '../models/user';
 
 const router: Router = Router();
 
-// TODO: finish this endpoint
-router.post(`/:id/change_password`, (req: Request, res: Response, next) => {
+router.post(`/:id/change_password`, (req: Request, res: Response) => {
     const { id } = req.params;
     const {
         current: username,
         password,
         repeat
     } = req.body;
-
-    // tslint:disable-next-line:no-console
-    console.log("body: ", req.body);
 
     if ( password !== repeat ) {
         res.status(401).json({
@@ -26,21 +22,22 @@ router.post(`/:id/change_password`, (req: Request, res: Response, next) => {
     User.update(
         { password: `${password}` },
         {
-            where: { id },
+            where: { id, username },
+            individualHooks: true,
             returning: true
         }
     ).then( result => {
         if ( result ) {
-            // tslint:disable-next-line:no-console
-            console.log("user: ", result);
             res.status(200).json({
                 code: 200,
                 message: 'Resource Updated'
             });
         }
     }).catch( error => {
-        // tslint:disable-next-line:no-console
-        console.log("error: ", error);
+        res.status(500).json({
+            code: 500,
+            message: 'Internal Server Error'
+        })
     });
 });
 
