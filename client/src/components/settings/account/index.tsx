@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import useForm from 'react-hook-form';
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
@@ -15,6 +15,7 @@ import {
     Label,
     Message
 } from 'semantic-ui-react';
+import { userUpdatedSelector } from '../../../selectors';
 
 interface AccountProps {
     userChangePasswordRequest: (
@@ -22,7 +23,8 @@ interface AccountProps {
         current: string, 
         password: string, 
         repeat: string
-    ) => any
+    ) => any,
+    userUpdated: boolean
 }
 
 const Component: React.FC<AccountProps> = props => {
@@ -30,12 +32,17 @@ const Component: React.FC<AccountProps> = props => {
     const [open, setOpen] = useState(false);
     const [changePassword, setChangePassword] = useState(false);
     const [visible, setVisible] = useState(false);
-    const { userChangePasswordRequest } = props;
+    const { userChangePasswordRequest, userUpdated } = props;
+
+    useEffect(() => {
+        if (userUpdated) setVisible(true);
+    }, [userUpdated])
 
     const onSubmit = ({current, password, repeat}, e) => {
-        console.log("form's been submitted: ", current, password, repeat);
         const id = 1;
         userChangePasswordRequest(id, current, password, repeat);
+        // TODO: make sure it doesn't reset the form when typed password and confirmation password ain't equal
+        e.target.reset();
     };
 
     const onDeleteAccount = () => {
@@ -48,8 +55,8 @@ const Component: React.FC<AccountProps> = props => {
         <React.Fragment>
             { visible ? <Message info
                     onDismiss={onDismiss}
-                    header='Welcome Back!'
-                    content='Your authentication has been completed.'
+                    header='Done!'
+                    content='Your account information has been updated successfully.'
                 /> : ''}
 
             <Checkbox 
@@ -120,12 +127,16 @@ const Component: React.FC<AccountProps> = props => {
     );
 }
 
+const mapStateToProps = state => ({
+    userUpdated: userUpdatedSelector(state)
+})
+
 const mapDispatchToProps = (dispatch: Dispatch) => {
     return bindActionCreators({
         userChangePasswordRequest
     }, dispatch);
 }
 
-const Account = connect(null, mapDispatchToProps)(Component);
+const Account = connect(mapStateToProps, mapDispatchToProps)(Component);
 
 export { Account };

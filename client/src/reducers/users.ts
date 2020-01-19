@@ -3,7 +3,8 @@ import { Types } from '../constants';
 
 const INITIAL_STATE = {
     message: null,
-    error: null
+    error: null,
+    updated: null
 };
 
 const users = (state = INITIAL_STATE, action: IAction) => {
@@ -14,6 +15,7 @@ const users = (state = INITIAL_STATE, action: IAction) => {
             return {
                 ...state,
                 message: action.payload.message,
+                updated: true
             }
         case Types.USER_CHANGE_PASSWORD_ERROR:
             return {
