@@ -21,7 +21,7 @@ const Component: React.FC<LoginProps> = props => {
     const [visible, setVisible] = useState(false);
     const [show, setShow] = useState(false);
     const { register, handleSubmit, errors } = useForm();
-    const pwdRef = useRef(null);
+    const pwd = useRef(null);
     const { error, authenticated } = props;
 
     useEffect(() => {
@@ -34,7 +34,6 @@ const Component: React.FC<LoginProps> = props => {
             setVisible(true);
     }, [error])
     
-
     const onSubmit = ({ username, password }) => {
         props.userLoginRequest(username, password);
     };
@@ -42,7 +41,14 @@ const Component: React.FC<LoginProps> = props => {
     const onDismiss = () => setVisible(false);
 
     const onShowPassword = () => {
-        console.log("aca:", pwdRef.current);
+        const icon = pwd.current.childNodes[0];
+
+        if(!show)
+            icon.classList.add('open');
+        else 
+            icon.classList
+            .remove('open');
+
         setShow(!show);
     }
 
@@ -87,7 +93,7 @@ const Component: React.FC<LoginProps> = props => {
                             <button 
                                 type="button" 
                                 className="ui icon button"
-                                ref={pwdRef}
+                                ref={pwd}
                                 onClick={onShowPassword}
                             >
                                 <i className="lock icon"></i>
