@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import "./styles.scss";
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
@@ -19,7 +19,9 @@ export interface LoginProps {
 
 const Component: React.FC<LoginProps> = props => {
     const [visible, setVisible] = useState(false);
+    const [show, setShow] = useState(false);
     const { register, handleSubmit, errors } = useForm();
+    const pwdRef = useRef(null);
     const { error, authenticated } = props;
 
     useEffect(() => {
@@ -38,6 +40,11 @@ const Component: React.FC<LoginProps> = props => {
     };
 
     const onDismiss = () => setVisible(false);
+
+    const onShowPassword = () => {
+        console.log("aca:", pwdRef.current);
+        setShow(!show);
+    }
 
     const responseGoogle = (response) => {
         console.log(response);
@@ -69,13 +76,24 @@ const Component: React.FC<LoginProps> = props => {
 
                     <Form.Field required>
                         <label>Password</label>
-                        <input 
-                            name="password" 
-                            type="password" 
-                            placeholder="Password" 
-                            autoComplete="current-password"
-                            ref={register({ required: true })} />
-                            {errors.password && 'Password is required.'}
+                        <div className="ui action input">
+                            <input 
+                                name="password" 
+                                type={show ? 'text' : 'password'}
+                                placeholder="Password" 
+                                autoComplete="current-password"
+                                ref={register({ required: true })} 
+                            />
+                            <button 
+                                type="button" 
+                                className="ui icon button"
+                                ref={pwdRef}
+                                onClick={onShowPassword}
+                            >
+                                <i className="lock icon"></i>
+                            </button>
+                        </div>
+                        {errors.password && 'Password is required.'}
                     </Form.Field>
 
                     <Button type="submit" color="red" fluid>
