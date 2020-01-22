@@ -9,6 +9,9 @@ import { Events } from '../events';
 import { Settings } from '../settings';
 import { About } from '../about';
 
+//test
+import { BrowserRouter, Route, Switch, Redirect, useHistory } from 'react-router-dom';
+
 interface PanelProps {
     authenticated: boolean,
     history: any
@@ -18,6 +21,10 @@ const Component: React.FC<PanelProps> = props => {
     const [active, setActive] = useState('events');
     const [visible, setVisible] = useState(true);
     const { authenticated } = props;
+
+    let history = useHistory();
+
+    useEffect(() => history.push('/panel/events'), []);
 
     useEffect(() => {
         if(authenticated){
@@ -31,6 +38,7 @@ const Component: React.FC<PanelProps> = props => {
 
     const handleItemClick = (e, {name}) => {
         setActive(name);
+        history.push(`/panel/${name}`);
     }
 
     const onDismiss = () => setVisible(false);
@@ -73,9 +81,12 @@ const Component: React.FC<PanelProps> = props => {
 
                     <Grid.Column stretched width={12}>
                         <Segment color='blue'>
-                            {active === 'events' && <Events /> }
+                            {/* {active === 'events' && <Events /> }
                             {active === 'settings' && <Settings /> }
-                            {active === 'about' && <About />}
+                            {active === 'about' && <About />} */}
+                            <Route path="/panel/events" component={Events} />
+                            <Route path="/panel/settings" component={Settings} />
+                            <Route path="/panel/about" component={About} />
                         </Segment>
                     </Grid.Column>
                 </Grid>
