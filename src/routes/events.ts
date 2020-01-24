@@ -4,7 +4,15 @@ import Event from '../models/event';
 const router: Router = Router();
 
 router.get('/', async (req: Request, res: Response) => {
-    const events: Event[] = await Event.findAll({});
+    const page: any = req.params.page || 1;
+    const size  = 2;
+    const limit = 2;
+    const offset: number = page * size;
+
+    const events: Event[] = await Event.findAll({
+        limit,
+        offset
+    });
     res.status(200).json({
         code: 200,
         events
