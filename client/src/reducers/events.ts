@@ -1,10 +1,12 @@
 import { IAction } from '../actions/auth';
 import { Types } from '../constants';
+import { number } from 'prop-types';
 
 const INITIAL_STATE = {
     events: [],
     message: null,
-    error: null
+    error: null,
+    pages: 0
 };
 
 const events = (state = INITIAL_STATE, action: IAction) => {
@@ -14,7 +16,8 @@ const events = (state = INITIAL_STATE, action: IAction) => {
         case Types.GET_EVENTS_SUCCESS:
             return {
                 ...state,
-                events: action.payload.events
+                events: action.payload.events,
+                pages: action.payload.pages
             }
         default:
             return state;

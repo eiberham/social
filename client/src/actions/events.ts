@@ -8,11 +8,11 @@ export const eventsGetRequest = (): IAction => {
     }
 };
 
-export const eventsGetSuccess = (events): IAction => {
+export const eventsGetSuccess = (events, pages): IAction => {
     return {
         type: Types.GET_EVENTS_SUCCESS,
         payload: {
-            events
+            events, pages
         }
     }
 };

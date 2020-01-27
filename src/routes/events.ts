@@ -9,13 +9,15 @@ router.get('/', async (req: Request, res: Response) => {
     const limit = 2;
     const offset: number = page * size;
 
-    const events: Event[] = await Event.findAll({
+    // TODO: fix types here
+    const {count, rows}: any = await Event.findAndCountAll({
         limit,
         offset
     });
     res.status(200).json({
         code: 200,
-        events
+        events: rows,
+        pages: Math.floor(count / limit)
     });
 });
 

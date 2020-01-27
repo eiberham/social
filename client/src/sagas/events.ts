@@ -6,8 +6,8 @@ import api from '../api';
 
 function* getEvents(action: IAction){
     try {
-        const {data: {events}} = yield call(api.get, '/events', action.payload);
-        yield put(actions.eventsGetSuccess(events));
+        const {data: {events, pages}} = yield call(api.get, '/events', action.payload);
+        yield put(actions.eventsGetSuccess(events, pages));
     } catch(e) {
         //yield put(actions.errorResponse(e.message))
     }

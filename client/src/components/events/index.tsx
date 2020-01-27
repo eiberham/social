@@ -10,14 +10,15 @@ import { Table, Button, Icon, Pagination } from 'semantic-ui-react';
 
 export interface EventProps {
     eventsGetRequest: () => any;
-    events: Array<any>
+    events: Array<any>,
+    pages: number
 }
 
 const Component: React.FC<EventProps> = props => {
     useEffect(() => {
         props.eventsGetRequest();
     }, []);
-    const { events } = props;
+    const { events, pages } = props;
     console.log("events: ", events);
     return (
         <React.Fragment>
@@ -59,13 +60,13 @@ const Component: React.FC<EventProps> = props => {
 
                         <Pagination
                             inverted
-                            defaultActivePage={5}
+                            defaultActivePage={1}
                             ellipsisItem={{ content: <Icon name='ellipsis horizontal' />, icon: true }}
                             firstItem={{ content: <Icon name='angle double left' />, icon: true }}
                             lastItem={{ content: <Icon name='angle double right' />, icon: true }}
                             prevItem={{ content: <Icon name='angle left' />, icon: true }}
                             nextItem={{ content: <Icon name='angle right' />, icon: true }}
-                            totalPages={10}
+                            totalPages={pages}
                         />
                         </Table.HeaderCell>
                     </Table.Row>
@@ -75,7 +76,9 @@ const Component: React.FC<EventProps> = props => {
     );
 };
 
-const mapStateToProps = ({events: {events}}) => ({ events });
+const mapStateToProps = ({
+    events: {events, pages}
+}) => ({ events, pages });
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
     return bindActionCreators({
