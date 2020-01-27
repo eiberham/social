@@ -9,17 +9,23 @@ import { eventsGetRequest } from '../../actions/events';
 import { Table, Button, Icon, Pagination } from 'semantic-ui-react';
 
 export interface EventProps {
-    eventsGetRequest: () => any;
+    eventsGetRequest: (page: number) => any;
     events: Array<any>,
     pages: number
 }
 
 const Component: React.FC<EventProps> = props => {
     useEffect(() => {
-        props.eventsGetRequest();
+        props.eventsGetRequest(1);
     }, []);
     const { events, pages } = props;
-    console.log("events: ", events);
+
+    const onPageChange = (e, data) => { 
+        console.log("pagechange: ", data);
+        const { activePage } = data;
+        props.eventsGetRequest(activePage);
+    }
+    
     return (
         <React.Fragment>
             <h3>Social events given in the last weeks.</h3>
@@ -67,6 +73,7 @@ const Component: React.FC<EventProps> = props => {
                             prevItem={{ content: <Icon name='angle left' />, icon: true }}
                             nextItem={{ content: <Icon name='angle right' />, icon: true }}
                             totalPages={pages}
+                            onPageChange={onPageChange}
                         />
                         </Table.HeaderCell>
                     </Table.Row>

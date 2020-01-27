@@ -2,9 +2,12 @@ import { Types } from '../constants';
 
 import { IAction } from './auth';
 
-export const eventsGetRequest = (): IAction => {
+export const eventsGetRequest = (page: number): IAction => {
     return {
-        type: Types.GET_EVENTS_REQUEST
+        type: Types.GET_EVENTS_REQUEST,
+        payload: {
+            page
+        }
     }
 };
 
