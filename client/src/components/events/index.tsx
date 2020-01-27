@@ -72,7 +72,7 @@ const Component: React.FC<EventProps> = props => {
                             lastItem={{ content: <Icon name='angle double right' />, icon: true }}
                             prevItem={{ content: <Icon name='angle left' />, icon: true }}
                             nextItem={{ content: <Icon name='angle right' />, icon: true }}
-                            totalPages={pages}
+                            totalPages={pages + 1}
                             onPageChange={onPageChange}
                         />
                         </Table.HeaderCell>

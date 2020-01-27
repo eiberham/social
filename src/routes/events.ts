@@ -4,8 +4,9 @@ import Event from '../models/event';
 const router: Router = Router();
 
 router.get('/', async (req: Request, res: Response) => {
-    const page: any = req.params.page || 1;
-    const size  = 2;
+    const page: any = req.query.page -1;
+    const size: any = req.query.size;
+
     const limit = 2;
     const offset: number = page * size;
 
